@@ -37,6 +37,7 @@
         .image-container {
             display: flex;
             justify-content: center;
+            flex-wrap: wrap;
             margin-top: 20px;
         }
 
@@ -142,16 +143,21 @@
 </head>
 <body>
     <h1>Intel Puzzle - Level 1</h1>
-    
-    <p>Welcome to the first level of the intel puzzle! Analyze the satellite imagery and rocket launch image below to answer the questions.</p>
 
-    <!-- Image container to hold both images side-by-side -->
+    <p>
+        You have intercepted satellite images and intelligence reports from the adversary’s recent launches. Using OSINT techniques, analyze the images and data to identify key details about the adversary’s launch center, rocket, satellite constellation, and timing. Once you gather the correct information, you will unlock the next phase of intelligence and be able to intercept the adversary's transmission.
+    </p>
+
+    <!-- Image container to hold all images side-by-side -->
     <div class="image-container">
         <!-- Display the first image (Taiyuan Satellite Launch Center) -->
         <img src="resources/images/intelPuzzle1.png" alt="Taiyuan Satellite Launch Center" class="intel-image">
 
         <!-- Display the second image (Long March 2D rocket) -->
         <img src="resources/images/intelPuzzle1b.png" alt="Long March 2D rocket" class="intel-image">
+
+        <!-- Display the third image -->
+        <img src="resources/images/intellevel1c.png" alt="Satellite Cluster" class="intel-image">
     </div>
 
     <div class="question">
