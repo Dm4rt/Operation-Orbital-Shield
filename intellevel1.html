@@ -62,6 +62,15 @@
             font-size: 1.2em;
         }
 
+        /* Highlight incorrect inputs */
+        .incorrect {
+            border: 2px solid red;
+        }
+
+        .correct {
+            border: 2px solid green;
+        }
+
         /* Style for the submit button */
         .submit-button {
             display: block;
@@ -85,11 +94,11 @@
     <script>
         function checkAnswers() {
             // Get user answers
-            const launchCenter = document.getElementById('launchCenter').value.trim().toLowerCase();
-            const rocket = document.getElementById('rocket').value.trim().toLowerCase();
-            const launchDate = document.getElementById('launchDate').value.trim().toLowerCase();
-            const satellites = document.getElementById('satellites').value.trim().toLowerCase();
-            const constellation = document.getElementById('constellation').value.trim().toLowerCase();
+            const launchCenter = document.getElementById('launchCenter');
+            const rocket = document.getElementById('rocket');
+            const launchDate = document.getElementById('launchDate');
+            const satellites = document.getElementById('satellites');
+            const constellation = document.getElementById('constellation');
 
             // Correct answers
             const correctLaunchCenter = "taiyuan satellite launch center";
@@ -98,16 +107,33 @@
             const correctSatellites = "six";
             const correctConstellation = "jilin-1";
 
-            // Check answers
-            if (launchCenter === correctLaunchCenter && 
-                rocket === correctRocket &&
-                launchDate === correctLaunchDate &&
-                satellites === correctSatellites &&
-                constellation === correctConstellation) {
+            let allCorrect = true; // Flag to check if all answers are correct
+
+            // Function to validate each answer
+            function validateAnswer(inputField, correctAnswer) {
+                if (inputField.value.trim().toLowerCase() === correctAnswer) {
+                    inputField.classList.remove('incorrect');
+                    inputField.classList.add('correct');
+                } else {
+                    inputField.classList.remove('correct');
+                    inputField.classList.add('incorrect');
+                    allCorrect = false;
+                }
+            }
+
+            // Validate each field
+            validateAnswer(launchCenter, correctLaunchCenter);
+            validateAnswer(rocket, correctRocket);
+            validateAnswer(launchDate, correctLaunchDate);
+            validateAnswer(satellites, correctSatellites);
+            validateAnswer(constellation, correctConstellation);
+
+            // If all answers are correct, proceed to the next level
+            if (allCorrect) {
                 alert("Correct! Proceeding to the next level.");
                 window.location.href = 'intellevel2.html'; // Proceed to next level
             } else {
-                alert("Incorrect. Please try again.");
+                alert("Some answers are incorrect. Please check the highlighted fields.");
             }
 
             return false; // Prevent form submission
@@ -149,4 +175,3 @@
     <button class="submit-button" onclick="checkAnswers()">Submit</button>
 </body>
 </html>
-
