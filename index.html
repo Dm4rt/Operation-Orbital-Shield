@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Operation Orbital Shield</title>
+    
+    <!-- Load Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap" rel="stylesheet">
+    
     <style>
         /* Add basic styling for the navigation bar */
         nav {
@@ -30,15 +34,65 @@
             background-image: url('resources/images/pageBackground.jpg');
             background-size: cover;
             background-position: center;
-            background-repeat: no-repeat;
+            background-repeat: repeat-y;
             height: 100vh; /* Set to full viewport height */
             margin: 0;
         }
 
-        /* Ensure text is readable over the background */
-        h1, p {
+        /* Style the title */
+        h1 {
+            font-family: 'Roboto', sans-serif; /* Use the Roboto font */
+            font-size: 4em; /* Increase the size */
+            color: white; /* Text color */
+            text-align: center; /* Center the title */
+            font-weight: 900; /* Make the text bold */
+            text-shadow: 
+                -1px -1px 0 #000,  
+                1px -1px 0 #000,  
+                -1px 1px 0 #000,  
+                1px 1px 0 #000; /* Add black outline using text-shadow */
+            margin-top: 20px;
+        }
+
+        /* Center the image */
+        .shield-image {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 50%; /* Adjust the width of the image as necessary */
+            margin-top: 20px;
+        }
+
+        /* Style the paragraph */
+        p {
             color: white;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Add some shadow to make text stand out */
+            text-align: center;
+            font-size: 1.2em;
+        }
+
+        /* Style the buttons */
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .nav-button {
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            margin: 10px;
+            font-size: 1.1em;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .nav-button:hover {
+            background-color: #555;
         }
     </style>
 </head>
@@ -46,10 +100,25 @@
     <nav>
         <a href="index.html">Home</a>
         <a href="intel.html">Intel</a>
+        <a href="spaceOps.html">Space Ops</a>
+        <a href="cyber.html">Cyber</a>
+        <a href="acquisitions.html">Acquisitions/Dev Engineering</a>
     </nav>
 
-    <h1>Welcome to Operation Orbital Shield</h1>
+    <h1>Operation Orbital Shield</h1>
+    
+    <!-- Center the Orbital Shield image below the title -->
+    <img src="resources/images/orbitalShield.jpg" alt="Orbital Shield" class="shield-image">
+
     <p>This is the homepage for Operation Orbital Shield. Explore different sections using the navigation bar above.</p>
+
+    <!-- Button links to different pages -->
+    <div class="button-container">
+        <a href="spaceOps.html" class="nav-button">Space Ops</a>
+        <a href="intel.html" class="nav-button">Intel</a>
+        <a href="cyber.html" class="nav-button">Cyber</a>
+        <a href="acquisitions.html" class="nav-button">Acquisitions/Dev Engineering</a>
+    </div>
 </body>
 </html>
 

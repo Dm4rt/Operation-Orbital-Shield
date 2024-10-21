@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intel Puzzle Level 2 - Operation Orbital Shield</title>
+    
+    <!-- Load Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap" rel="stylesheet">
+
+    <style>
+        /* Set the background image */
+        body {
+            background-image: url('resources/images/pageBackground.jpg');
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            min-height: 100vh;
+        }
+
+        /* Style the title */
+        h1 {
+            font-family: 'Roboto', sans-serif;
+            font-size: 3em;
+            color: white;
+            text-align: center;
+            text-shadow: 
+                -1px -1px 0 #000,  
+                1px -1px 0 #000,  
+                -1px 1px 0 #000,  
+                1px 1px 0 #000;
+            margin-top: 20px;
+        }
+
+        /* Style the puzzle content */
+        p, .question {
+            color: white;
+            text-align: center;
+            font-size: 1.2em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            margin-top: 40px;
+        }
+
+        /* Style the input fields */
+        .answer-input {
+            display: block;
+            margin: 10px auto;
+            padding: 10px;
+            font-size: 1.2em;
+        }
+
+        /* Style for the submit button */
+        .submit-button {
+            display: block;
+            width: 150px;
+            padding: 10px;
+            font-size: 1.2em;
+            color: white;
+            background-color: #333;
+            border: none;
+            border-radius: 5px;
+            text-align: center;
+            margin: 20px auto;
+            cursor: pointer;
+        }
+
+        .submit-button:hover {
+            background-color: #555;
+        }
+    </style>
+
+    <script>
+        function checkAnswers() {
+            // Example logic for Level 2 answers (adjust logic as needed)
+            const answer = document.getElementById('nextAnswer').value.trim().toLowerCase();
+
+            const correctAnswer = "example answer"; // Placeholder for the actual correct answer for Level 2
+
+            if (answer === correctAnswer) {
+                alert("Correct! Proceeding to the next level.");
+                window.location.href = 'intellevel3.html'; // Proceed to next level
+            } else {
+                alert("Incorrect. Please try again.");
+            }
+
+            return false; // Prevent form submission
+        }
+    </script>
+</head>
+<body>
+    <h1>Intel Puzzle - Level 2</h1>
+    
+    <p>Congratulations on passing Level 1! You’re now in the second level of the intel puzzle. Analyze the following information to move forward.</p>
+
+    <div class="question">
+        <p><strong>Question:</strong></p>
+        <p>Example question for Level 2: <br> *Insert puzzle question for the second level here*</p>
+        <input type="text" id="nextAnswer" class="answer-input" placeholder="Enter your answer">
+    </div>
+
+    <button class="submit-button" onclick="checkAnswers()">Submit</button>
+</body>
+</html>
+

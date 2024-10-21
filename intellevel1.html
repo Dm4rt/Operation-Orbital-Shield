@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intel Puzzle Level 1 - Operation Orbital Shield</title>
+    
+    <!-- Load Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap" rel="stylesheet">
+
+    <style>
+        /* Set the background image to repeat at the bottom */
+        body {
+            background-image: url('resources/images/pageBackground.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: repeat-y;
+            margin: 0;
+            min-height: 100vh;
+        }
+
+        /* Style the title */
+        h1 {
+            font-family: 'Roboto', sans-serif;
+            font-size: 3em;
+            color: white;
+            text-align: center;
+            text-shadow: 
+                -1px -1px 0 #000,  
+                1px -1px 0 #000,  
+                -1px 1px 0 #000,  
+                1px 1px 0 #000;
+            margin-top: 20px;
+        }
+
+        /* Center the images side-by-side */
+        .image-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .intel-image {
+            width: 30%; /* Adjust the image size */
+            margin: 0 10px; /* Add some spacing between the images */
+        }
+
+        /* Style the puzzle content */
+        p, .question {
+            color: white;
+            text-align: center;
+            font-size: 1.2em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            margin-top: 40px;
+        }
+
+        /* Style the input fields */
+        .answer-input {
+            display: block;
+            margin: 10px auto;
+            padding: 10px;
+            font-size: 1.2em;
+        }
+
+        /* Style for the submit button */
+        .submit-button {
+            display: block;
+            width: 150px;
+            padding: 10px;
+            font-size: 1.2em;
+            color: white;
+            background-color: #333;
+            border: none;
+            border-radius: 5px;
+            text-align: center;
+            margin: 20px auto;
+            cursor: pointer;
+        }
+
+        .submit-button:hover {
+            background-color: #555;
+        }
+    </style>
+
+    <script>
+        function checkAnswers() {
+            // Get user answers
+            const launchCenter = document.getElementById('launchCenter').value.trim().toLowerCase();
+            const rocket = document.getElementById('rocket').value.trim().toLowerCase();
+            const launchDate = document.getElementById('launchDate').value.trim().toLowerCase();
+            const satellites = document.getElementById('satellites').value.trim().toLowerCase();
+            const constellation = document.getElementById('constellation').value.trim().toLowerCase();
+
+            // Correct answers
+            const correctLaunchCenter = "taiyuan satellite launch center";
+            const correctRocket = "long march 2d";
+            const correctLaunchDate = "september 20, 2024";
+            const correctSatellites = "six";
+            const correctConstellation = "jilin-1";
+
+            // Check answers
+            if (launchCenter === correctLaunchCenter && 
+                rocket === correctRocket &&
+                launchDate === correctLaunchDate &&
+                satellites === correctSatellites &&
+                constellation === correctConstellation) {
+                alert("Correct! Proceeding to the next level.");
+                window.location.href = 'intellevel2.html'; // Proceed to next level
+            } else {
+                alert("Incorrect. Please try again.");
+            }
+
+            return false; // Prevent form submission
+        }
+    </script>
+</head>
+<body>
+    <h1>Intel Puzzle - Level 1</h1>
+    
+    <p>Welcome to the first level of the intel puzzle! Analyze the satellite imagery and rocket launch image below to answer the questions.</p>
+
+    <!-- Image container to hold both images side-by-side -->
+    <div class="image-container">
+        <!-- Display the first image (Taiyuan Satellite Launch Center) -->
+        <img src="resources/images/intelPuzzle1.png" alt="Taiyuan Satellite Launch Center" class="intel-image">
+
+        <!-- Display the second image (Long March 2D rocket) -->
+        <img src="resources/images/intelPuzzle1b.png" alt="Long March 2D rocket" class="intel-image">
+    </div>
+
+    <div class="question">
+        <p><strong>Questions:</strong></p>
+        <p>1. What is the name of the launch center?</p>
+        <input type="text" id="launchCenter" class="answer-input" placeholder="Enter your answer">
+
+        <p>2. What is the name of the rocket launched?</p>
+        <input type="text" id="rocket" class="answer-input" placeholder="Enter your answer">
+
+        <p>3. When was the rocket launched?</p>
+        <input type="text" id="launchDate" class="answer-input" placeholder="Enter your answer">
+
+        <p>4. How many remote-sensing satellites were launched aboard the rocket?</p>
+        <input type="text" id="satellites" class="answer-input" placeholder="Enter your answer">
+
+        <p>5. What constellation are the satellites a part of?</p>
+        <input type="text" id="constellation" class="answer-input" placeholder="Enter your answer">
+    </div>
+
+    <button class="submit-button" onclick="checkAnswers()">Submit</button>
+</body>
+</html>
+
