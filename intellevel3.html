@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intel Puzzle Level 3 - Operation Orbital Shield</title>
+    
+    <!-- Load Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            background-image: url('resources/images/pageBackground.jpg');
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            min-height: 100vh;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        h1 {
+            font-size: 3em;
+            color: white;
+            text-align: center;
+            text-shadow: 
+                -1px -1px 0 #000,  
+                1px -1px 0 #000,  
+                -1px 1px 0 #000,  
+                1px 1px 0 #000;
+            margin-top: 20px;
+        }
+
+        .content {
+            text-align: center;
+            color: white;
+            font-size: 1.2em;
+            margin: 20px auto;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        .intel-image, .video-container {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 20px;
+        }
+
+        .images-container {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        video {
+            width: 45%;
+            height: auto;
+        }
+
+        .question {
+            margin-top: 30px;
+            text-align: center;
+            color: white;
+        }
+
+        .answer-input {
+            display: block;
+            margin: 10px auto;
+            padding: 10px;
+            font-size: 1.2em;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            width: 40%;
+        }
+
+        .incorrect {
+            border-color: red;
+        }
+
+        .correct {
+            border-color: green;
+        }
+
+        .submit-button {
+            display: block;
+            width: 150px;
+            padding: 10px;
+            font-size: 1.2em;
+            color: white;
+            background-color: #333;
+            border: none;
+            border-radius: 5px;
+            text-align: center;
+            margin: 20px auto;
+            cursor: pointer;
+        }
+
+        .submit-button:hover {
+            background-color: #555;
+        }
+    </style>
+
+    <script>
+        function checkAnswers() {
+            const coordinatesAnswer = document.getElementById('coordinates');
+            const launchAnswer = document.getElementById('launch');
+            const orbitAnswer = document.getElementById('orbit');
+            const threatAnswer = document.getElementById('threat');
+
+            const correctCoordinates = "plesetsk cosmodrome";
+            const correctLaunch = "cosmos 2576";
+            const correctOrbit = "low earth orbit";
+
+            let allCorrect = true;
+
+            // Function to validate answers
+            function validateAnswer(inputField, correctAnswer) {
+                if (inputField.value.trim().toLowerCase() === correctAnswer.toLowerCase()) {
+                    inputField.classList.remove('incorrect');
+                    inputField.classList.add('correct');
+                } else {
+                    inputField.classList.remove('correct');
+                    inputField.classList.add('incorrect');
+                    allCorrect = false;
+                }
+            }
+
+            // Validate each answer
+            validateAnswer(coordinatesAnswer, correctCoordinates);
+            validateAnswer(launchAnswer, correctLaunch);
+            validateAnswer(orbitAnswer, correctOrbit);
+
+            // Question 3 doesn't have a correct answer, so just mark it correct
+            threatAnswer.classList.add('correct');
+
+            if (allCorrect) {
+                alert("Correct! You have completed the Intel Puzzle.");
+                // Redirect to success page or next level if applicable
+            } else {
+                alert("Some answers are incorrect. Please check the highlighted fields.");
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Intel Puzzle - Level 3</h1>
+    
+    <div class="content">
+        <p>Analyze the intercepted images, telemetry data, and the launch video to answer the following questions about Cosmos 2576.</p>
+    </div>
+
+    <!-- Display the image with hidden coordinates -->
+    <img src="resources/images/intellevel3.png" alt="Satellite Image of Plesetsk Cosmodrome" class="intel-image">
+
+    <!-- Question 1: Identify the launch site -->
+    <div class="question">
+        <p><strong>1. What facility is located at the given coordinates?</strong></p>
+        <input type="text" id="coordinates" class="answer-input" placeholder="Enter your answer">
+    </div>
+
+    <!-- Display the satellite image -->
+    <img src="resources/images/allegedASAT.jpg" alt="Cosmos 2576 Satellite" class="intel-image">
+
+    <!-- Question 2: Identify the launch and orbit -->
+    <div class="question">
+        <p><strong>2. What launch was this? What orbit is it in?</strong></p>
+        <input type="text" id="launch" class="answer-input" placeholder="Enter the launch name">
+        <input type="text" id="orbit" class="answer-input" placeholder="Enter the orbit type">
+    </div>
+
+    <!-- Display the launch video and additional image -->
+    <div class="images-container">
+        <video controls download>
+            <source src="resources/videos/2576Launch.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+
+        <img src="resources/images/aligned.jpeg" alt="Cosmos 2576 aligning with US 314" class="intel-image">
+    </div>
+
+    <!-- Question 3: Analyze the satellite's behavior -->
+    <div class="question">
+        <p><strong>3. What potential threat does Cosmos 2576 pose based on its behavior?</strong></p>
+        <input type="text" id="threat" class="answer-input" placeholder="Enter your analysis">
+    </div>
+
+    <!-- Submit button -->
+    <button class="submit-button" onclick="checkAnswers()">Submit</button>
+</body>
+</html>
+
