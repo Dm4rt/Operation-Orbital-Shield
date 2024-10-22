@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cyber Defense Level 1 - Operation Orbital Shield</title>
+    <title>Cyber Defense - Level 1</title>
     
     <!-- Load Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap" rel="stylesheet">
@@ -38,9 +38,28 @@
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
         }
 
-        .button-container {
+        .image-container {
             text-align: center;
             margin-top: 30px;
+        }
+
+        .image-container img {
+            max-width: 70%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .input-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .input-box {
+            padding: 10px;
+            width: 50%;
+            font-size: 1.2em;
+            border-radius: 5px;
+            border: 1px solid #333;
         }
 
         .button {
@@ -58,21 +77,60 @@
         .button:hover {
             background-color: #555;
         }
+
+        .link-container {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .link {
+            font-size: 1.2em;
+            color: #FFD700;
+            text-decoration: none;
+        }
+
+        .link:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
     <h1>Cyber Defense - Level 1</h1>
     
     <div class="content">
-        <p>Adversaries are scanning the satellite's communication systems for vulnerabilities. You must identify and patch any weak points before they are exploited.</p>
-        <p><strong>Task:</strong> Conduct a vulnerability scan. Identify which communication systems are vulnerable to exploitation and secure them.</p>
+        <p>The hacker group <strong>R3dSh1ft</strong>, believed to be a state-sponsored actor, has been targeting Space Force systems with a range of cyberattacks, from DoS assaults on ground stations to ransomware attacks on system backups. Follow the steps below to neutralize their threat!</p>
+        <p>We've discovered an entry point into their servers, but it's secured by a password, and we currently have no leads on what it could be. We need to gather more intel on the group that might reveal the password. Use the website provided by our intelligence team to uncover potential clues.</p>
     </div>
 
-    <!-- Start and Back buttons -->
-    <div class="button-container">
-        <a href="cyberlevel2.html" class="button">Next Phase</a>
-        <a href="cyber.html" class="button">Back</a>
+    <!-- Display the R3dSh1ft image -->
+    <div class="image-container">
+        <img src="resources/images/R3dSh1ft.jpg" alt="R3dSh1ft Hacker Group">
     </div>
+
+    <!-- Display the link to the hacker page -->
+    <div class="link-container">
+        <p>Follow the link to investigate:</p>
+        <a href="R3dSh1ft.html" target="_blank" class="link">R3dSh1ft Adversary Domain</a>
+    </div>
+
+    <!-- Search Input for answers -->
+    <div class="input-container">
+        <input type="text" id="searchQuery" class="input-box" placeholder="Enter discovered password">
+        <button class="button" onclick="checkAnswer()">Submit</button>
+    </div>
+
+    <script>
+        function checkAnswer() {
+            const searchQuery = document.getElementById('searchQuery').value.trim().toLowerCase();
+            const correctPassword = "s3mp3r5upra";  // The correct password to move to the next level
+
+            if (searchQuery === correctPassword) {
+                alert("Correct! You've accessed the R3dSh1ft servers.");
+                window.location.href = 'cyberlevel2.html';  // Redirect to the next level
+            } else {
+                alert("Incorrect. Keep searching for the password.");
+            }
+        }
+    </script>
 </body>
 </html>
-
