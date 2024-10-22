@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space Operations Level 1 - Operation Orbital Shield</title>
+    
+    <!-- Load Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            background-image: url('resources/images/pageBackground.jpg');
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            min-height: 100vh;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        h1 {
+            font-size: 3em;
+            color: white;
+            text-align: center;
+            text-shadow: 
+                -1px -1px 0 #000,  
+                1px -1px 0 #000,  
+                -1px 1px 0 #000,  
+                1px 1px 0 #000;
+            margin-top: 20px;
+        }
+
+        .content {
+            text-align: center;
+            color: white;
+            font-size: 1.2em;
+            margin: 20px auto;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        .button-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            color: white;
+            background-color: #333;
+            border: none;
+            border-radius: 5px;
+            margin: 20px;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background-color: #555;
+        }
+
+        .steps {
+            text-align: left;
+            color: white;
+            font-size: 1.2em;
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
+        }
+
+        .step {
+            margin-bottom: 20px;
+        }
+
+        .step strong {
+            color: #FFD700; /* Highlight important parts */
+        }
+
+        .image-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Space Operations - Level 1</h1>
+    
+    <div class="content">
+        <p>In this level, you will use Kerbal Space Program (KSP) to simulate launching a rocket carrying a satellite into orbit. Follow the steps below to achieve a successful launch and deployment.</p>
+    </div>
+
+    <!-- Walkthrough Steps -->
+    <div class="steps">
+        <div class="step">
+            <p><strong>Step 1:</strong> Open **Kerbal Space Program** and enter the Vehicle Assembly Building (VAB). Begin by selecting a **command module** that will serve as the core of your rocket.</p>
+        </div>
+
+        <div class="step">
+            <p><strong>Step 2:</strong> Attach a **fuel tank** and **engine** to your command module. Ensure you have enough fuel to reach orbit. You can choose from different stages to improve efficiency during different phases of the launch.</p>
+        </div>
+
+        <div class="step">
+            <p><strong>Step 3:</strong> Add **decouplers** between each stage to separate different parts of the rocket as they run out of fuel. For the satellite, attach it to the final stage with a decoupler so it can be deployed once you're in orbit.</p>
+        </div>
+
+        <div class="step">
+            <p><strong>Step 4:</strong> After building your rocket, proceed to the **launch pad**. **Throttle up** your engines to 100% and activate your first stage to begin the launch.</p>
+        </div>
+
+        <div class="step">
+            <p><strong>Step 5:</strong> As your rocket ascends, keep an eye on your **altitude** and **velocity**. Once you're above 10km, begin to tilt your rocket eastward to start your gravity turn, which helps achieve orbit.</p>
+        </div>
+
+        <div class="step">
+            <p><strong>Step 6:</strong> When you reach an **apoapsis** of around 80-100km, cut your engines and coast to apoapsis. Then, perform a **prograde burn** to circularize your orbit.</p>
+        </div>
+
+        <div class="step">
+            <p><strong>Step 7:</strong> Once in orbit, deploy your satellite by activating the final stage. Use the satellite's **reaction control system** (RCS) or **engines** to adjust its position if necessary.</p>
+        </div>
+
+        <div class="step">
+            <p><strong>Step 8:</strong> Monitor the satellite's orbit and ensure it's stable. Congratulations, you've successfully deployed your satellite!</p>
+        </div>
+    </div>
+
+    <!-- Display the KSP image -->
+    <div class="image-container">
+        <img src="resources/images/kspB.png" alt="Kerbal Space Program Rocket Launch">
+    </div>
+
+    <!-- Start and Back buttons -->
+    <div class="button-container">
+        <a href="spaceopslevel2.html" class="button">Next Phase</a>
+        <a href="spaceOps.html" class="button">Back</a>
+    </div>
+</body>
+</html>
+
