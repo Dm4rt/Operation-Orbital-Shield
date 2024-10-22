@@ -9,18 +9,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap" rel="stylesheet">
 
     <style>
-        /* Set the background image */
         body {
             background-image: url('resources/images/pageBackground.jpg');
             background-size: cover;
             background-position: center;
             margin: 0;
             min-height: 100vh;
+            font-family: 'Roboto', sans-serif;
         }
 
-        /* Style the title */
         h1 {
-            font-family: 'Roboto', sans-serif;
             font-size: 3em;
             color: white;
             text-align: center;
@@ -32,24 +30,60 @@
             margin-top: 20px;
         }
 
-        /* Style the puzzle content */
-        p, .question {
-            color: white;
+        .content {
             text-align: center;
+            color: white;
             font-size: 1.2em;
+            margin: 20px auto;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-            margin-top: 40px;
         }
 
-        /* Style the input fields */
+        .intel-image, .video-container {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 20px;
+        }
+
+        video {
+            width: 70%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .cipher-text {
+            font-size: 1.8em;
+            color: yellow;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .question {
+            margin-top: 30px;
+            text-align: center;
+            color: white;
+        }
+
         .answer-input {
             display: block;
             margin: 10px auto;
             padding: 10px;
             font-size: 1.2em;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            width: 30%;  /* Adjusted to 30% to make the input boxes smaller */
         }
 
-        /* Style for the submit button */
+        .incorrect {
+            border-color: red;
+        }
+
+        .correct {
+            border-color: green;
+        }
+
         .submit-button {
             display: block;
             width: 150px;
@@ -71,16 +105,41 @@
 
     <script>
         function checkAnswers() {
-            // Example logic for Level 2 answers (adjust logic as needed)
-            const answer = document.getElementById('nextAnswer').value.trim().toLowerCase();
+            const satelliteCount = document.getElementById('satelliteCount');
+            const rocket = document.getElementById('rocket');
+            const constellation = document.getElementById('constellation');
+            const nextLaunch = document.getElementById('nextLaunch');
 
-            const correctAnswer = "example answer"; // Placeholder for the actual correct answer for Level 2
+            const correctSatelliteCount = "18";
+            const correctRocket = "Long March 6A";
+            const correctConstellation = "Thousand Sails megaconstellation";  // New constellation question
+            const correctNextLaunch = "December 25, 2024";
 
-            if (answer === correctAnswer) {
-                alert("Correct! Proceeding to the next level.");
+            let allCorrect = true;
+
+            // Function to validate answers
+            function validateAnswer(inputField, correctAnswer) {
+                if (inputField.value.trim().toLowerCase() === correctAnswer.toLowerCase()) {
+                    inputField.classList.remove('incorrect');
+                    inputField.classList.add('correct');
+                } else {
+                    inputField.classList.remove('correct');
+                    inputField.classList.add('incorrect');
+                    allCorrect = false;
+                }
+            }
+
+            // Validate each answer
+            validateAnswer(satelliteCount, correctSatelliteCount);
+            validateAnswer(rocket, correctRocket);
+            validateAnswer(constellation, correctConstellation);
+            validateAnswer(nextLaunch, correctNextLaunch);
+
+            if (allCorrect) {
+                alert("Correct! Proceed to the next level.");
                 window.location.href = 'intellevel3.html'; // Proceed to next level
             } else {
-                alert("Incorrect. Please try again.");
+                alert("Some answers are incorrect. Please check the highlighted fields.");
             }
 
             return false; // Prevent form submission
@@ -90,12 +149,41 @@
 <body>
     <h1>Intel Puzzle - Level 2</h1>
     
-    <p>Congratulations on passing Level 1! You’re now in the second level of the intel puzzle. Analyze the following information to move forward.</p>
+    <div class="content">
+        <p>Analyze the intercepted social media post and video from the recent satellite launch. Use the clues provided to decrypt the cipher and answer the questions below.</p>
+    </div>
+
+    <!-- Display the fake Instagram post -->
+    <img src="resources/images/intellevel2post.jpg" alt="Intercepted Social Media Post" class="intel-image">
+
+    <!-- Display the cipher text for decryption -->
+    <div class="cipher-text">
+        <p><strong>Cipher:</strong> "Lpb qidk pemrcz pati ei ue xlw xwwglgcljzy sj Vicwftmo."</p>
+        <!-- The key is sixdegreeseast -->
+    </div>
+
+    <!-- Display the launch video -->
+    <div class="video-container">
+        <video controls download>
+            <source src="resources/videos/launch.mov" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
 
     <div class="question">
-        <p><strong>Question:</strong></p>
-        <p>Example question for Level 2: <br> *Insert puzzle question for the second level here*</p>
-        <input type="text" id="nextAnswer" class="answer-input" placeholder="Enter your answer">
+        <p><strong>Questions:</strong></p>
+        <p>1. How many satellites were launched during the last mission?</p>
+        <input type="text" id="satelliteCount" class="answer-input" placeholder="Enter your answer">
+
+        <p>2. What rocket was used for the last mission?</p>
+        <input type="text" id="rocket" class="answer-input" placeholder="Enter your answer">
+
+        <p>3. What constellation are the satellites part of?</p>
+        <input type="text" id="constellation" class="answer-input" placeholder="Enter your answer">
+
+        <p>4. When is the next satellite launch scheduled?</p>
+        <input type="text" id="nextLaunch" class="answer-input" placeholder="Enter your answer">
+        <!-- The next launch will be on the twentyfifth of December -->
     </div>
 
     <button class="submit-button" onclick="checkAnswers()">Submit</button>
