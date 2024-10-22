@@ -18,12 +18,36 @@
             min-height: 100vh;
             font-family: 'Roboto', sans-serif;
             color: white;
+            position: relative;
+        }
+
+        /* Create a dark overlay over the background */
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6); /* Darker transparent layer */
+            z-index: 1;
+        }
+
+        /* Content should sit on top of the overlay */
+        .content-wrapper {
+            position: relative;
+            z-index: 2; /* Ensure content is above the overlay */
+            padding: 20px;
+            display: flex;
+            justify-content: space-between; /* Align text and image next to each other */
+            align-items: flex-start;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         h1 {
             font-size: 3em;
             color: red;
-            text-align: center;
+            text-align: left;
             text-shadow: 
                 -1px -1px 0 #000,  
                 1px -1px 0 #000,  
@@ -32,21 +56,24 @@
             margin-top: 20px;
         }
 
+        .text-content {
+            flex: 1; /* Make the text content flexible */
+            margin-right: 20px; /* Space between text and image */
+        }
+
         .content {
-            text-align: center;
+            text-align: left;
             font-size: 1.2em;
-            margin: 20px auto;
+            margin: 20px 0;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-            max-width: 800px;
         }
 
         .image-container {
-            text-align: center;
-            margin-top: 30px;
+            max-width: 45%; /* Adjust image size to fit better */
         }
 
         .image-container img {
-            max-width: 70%;
+            width: 100%;
             height: auto;
             border-radius: 10px;
         }
@@ -54,8 +81,13 @@
         .pdf-container {
             text-align: center;
             font-size: 1.2em;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
             margin: 40px auto;
+            z-index: 3; /* Set z-index above the overlay */
+            position: relative; /* Ensure it stays above other content */
+        }
+
+        .pdf-container p {
+            color: white;
         }
 
         iframe {
@@ -63,21 +95,31 @@
             height: 600px;
             border: 2px solid #333;
             border-radius: 10px;
+            z-index: 3; /* Ensure the iframe is on top of the overlay */
+            position: relative;
         }
     </style>
 </head>
 <body>
-    <h1>Welcome to R3dSh1ft!</h1>
+    <!-- Add the dark overlay -->
+    <div class="overlay"></div>
 
-    <div class="content">
-        <p><strong>R3dSh1ft</strong> is a clandestine collective of elite hackers whose expertise lies in breaching the digital fortresses of the most secure systems. Operating in the shadows of cyberspace, we have gained notoriety for our audacious exploits, targeting government agencies and multinational corporations alike. What truly sets us apart is our fascination with hacking into the Space Force, the vanguard of orbital defense and exploration.</p>
-        <p>With unparalleled skill and cunning, we infiltrate satellite networks, probe classified databases, and exploit vulnerabilities in spacecraft systems, leaving behind only whispers of our presence.</p>
-    </div>
+    <!-- Content Wrapper -->
+    <div class="content-wrapper">
+        <!-- Text Section -->
+        <div class="text-content">
+            <h1>Welcome to R3dSh1ft!</h1>
 
-    <!-- Display the R3dSh1ft image -->
-    <div class="image-container">
-        <img src="resources/images/R3dSh1ft.jpg" alt="R3dSh1ft Hacker Group">
+            <div class="content">
+                <p><strong>R3dSh1ft</strong> is a clandestine collective of elite hackers whose expertise lies in breaching the digital fortresses of the most secure systems. Operating in the shadows of cyberspace, we have gained notoriety for our audacious exploits, targeting government agencies and multinational corporations alike. What truly sets us apart is our fascination with hacking into the Space Force, the vanguard of orbital defense and exploration.</p>
+                <p>With unparalleled skill and cunning, we infiltrate satellite networks, probe classified databases, and exploit vulnerabilities in spacecraft systems, leaving behind only whispers of our presence.</p>
+            </div>
+        </div>
 
+        <!-- Image Section -->
+        <div class="image-container">
+            <img src="resources/images/R3dSh1ft.jpg" alt="R3dSh1ft Hacker Group">
+        </div>
     </div>
 
     <!-- Embed the PDF file -->
