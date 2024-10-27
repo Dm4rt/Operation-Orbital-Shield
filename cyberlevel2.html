@@ -99,67 +99,90 @@
 
     function handleCommand(input) {
         switch (input) {
+            // General commands
             case 'help':
-                return 'Available commands: grep, nano, systemctl, iptables, ls, cd [directory], cat [file], clear';
+                return 'Available commands: grep, nano, systemctl, iptables, nmap, malwarescan, restore, patch, ls, cd [directory], cat [file], clear';
+            case 'ls':
+                return listFiles();
+            case 'clear':
+                outputElement.innerHTML = '';
+                return '';
+
+            // Network Recon and nmap
+            case 'nmap 192.168.1.0/24':
+                return 'Scanning network... Open ports found on 192.168.1.102: 22 (SSH), 80 (HTTP)';
+            case 'nmap 192.168.1.102':
+                return '192.168.1.102 - Open ports: 22 (SSH), 80 (HTTP)\nPossible vulnerabilities detected on HTTP: SQL Injection.';
+            case 'nmap -sS 192.168.1.0/24':
+                return 'Stealth scan initiated... Open ports found on 192.168.1.100: 22 (SSH), 80 (HTTP), 443 (HTTPS)';
+
+            // SSH Security and Incident Response
             case 'grep \'Failed password\' /var/log/auth.log':
                 return "Jul 10 14:32:16 server sshd[2022]: Failed password for root from 192.168.1.100 port 22 ssh2\nJul 10 14:32:20 server sshd[2025]: Failed password for root from 192.168.1.101 port 22 ssh2";
+            case "grep 'malware' /var/log/system.log":
+                return "Jul 12 10:12:45 server systemd[1]: Detected malware signature in /home/critical_files.\nJul 12 10:14:20 server kernel: Warning: possible malware activity detected in /home/critical_files/malware.txt";
+            case "grep 'Suspicious connection' /var/log/network.log":
+                return "Jul 12 10:20:55 server sshd[1221]: Suspicious connection attempt from 192.168.1.150\nJul 12 10:21:10 server kernel: Warning: possible unauthorized access detected.";
+            case "grep '192.168.1.100' /var/log/network.log":
+                return "Jul 12 10:22:33 server sshd[1222]: Connection attempt from 192.168.1.100 detected. Reviewing network logs for more info.";
             case 'nano /etc/ssh/sshd_config':
                 sshConfig = sshConfig.replace("PermitRootLogin yes", "PermitRootLogin no");
                 return "Editing /etc/ssh/sshd_config... Changed 'PermitRootLogin' from 'yes' to 'no'.";
             case 'systemctl restart sshd':
                 return sshConfig.includes("PermitRootLogin no") ? "SSH service restarted successfully!" : "Error: SSH config not correctly edited.";
             case 'iptables -A INPUT -s 192.168.1.100 -j DROP':
-                iptablesRules.push("Blocked IP: 192.168.1.100");
-                return "IP 192.168.1.100 blocked successfully.";
             case 'iptables -A INPUT -s 192.168.1.101 -j DROP':
-                iptablesRules.push("Blocked IP: 192.168.1.101");
-                return "IP 192.168.1.101 blocked successfully.";
+            case 'iptables -A INPUT -s 192.168.1.150 -j DROP':
+                iptablesRules.push(`Blocked IP: ${input.split(' ')[3]}`);
+                return `IP ${input.split(' ')[3]} blocked successfully.`;
             case 'iptables -L':
                 return iptablesRules.length > 0 ? iptablesRules.join('\n') : 'No iptables rules are set.';
-            case 'ls':
-                return listFiles();
-            case 'clear':
-                outputElement.innerHTML = '';
-                return '';
+            case 'malwarescan /home/critical_files':
+                return 'Scan complete. Malicious file detected: /home/critical_files/malware.txt';
+            case 'restore /backup/critical_files':
+                return 'Restoring files from backup... Restoration complete.';
+            case 'patch -p1 /home/critical_files':
+                return 'Applying patch... Patch applied successfully. Vulnerabilities fixed.';
+
+            // Navigation commands
+            case 'cd home':
+                currentDirectory = '~/home';
+                updatePrompt();
+                return 'Moved to home directory. Use ls to view files.';
+            case 'cd home/critical_files':
+                currentDirectory = '~/home/critical_files';
+                updatePrompt();
+                return 'Moved to home/critical_files directory. Use ls to view files.';
+            case 'cd corrupted_files':
+                currentDirectory = '~/corrupted_files';
+                updatePrompt();
+                return 'Moved to corrupted_files directory. Use ls to view files.';
+            case 'cd intel_reports':
+                currentDirectory = '~/intel_reports';
+                updatePrompt();
+                return 'Moved to intel_reports directory. Use ls to view files.';
+            case 'cd tools':
+                currentDirectory = '~/tools';
+                updatePrompt();
+                return 'Moved to tools directory. Use ls to view available tools.';
+            case 'cd ..':
+                currentDirectory = '~';
+                updatePrompt();
+                return 'Moved back to root directory. Use ls to view directories.';
+
             default:
                 if (input.startsWith('cat ')) {
                     const file = input.split(' ')[1];
                     return readFile(file);
                 }
-                if (input.startsWith('cd ')) {
-                    const dir = input.split(' ')[1];
-                    return changeDirectory(dir);
-                }
                 return `Command not found: ${input}`;
-        }
-    }
-
-    function changeDirectory(dir) {
-        switch (dir) {
-            case 'corrupted_files':
-                currentDirectory = '~/corrupted_files';
-                updatePrompt();
-                return 'Moved to corrupted_files directory. Use ls to view files.';
-            case 'intel_reports':
-                currentDirectory = '~/intel_reports';
-                updatePrompt();
-                return 'Moved to intel_reports directory. Use ls to view files.';
-            case 'tools':
-                currentDirectory = '~/tools';
-                updatePrompt();
-                return 'Moved to tools directory. Use ls to view available tools.';
-            case '..':
-                currentDirectory = '~';
-                updatePrompt();
-                return 'Moved back to root directory. Use ls to view directories.';
-            default:
-                return `Directory not found: ${dir}`;
         }
     }
 
     function readFile(fileName) {
         const files = {
             '~': { '.secret_plan.txt': 'This plan involves sabotaging the Space Force KSP mission by corrupting key satellite components.' },
+            'home/critical_files': { 'malware.txt': 'The malware has been injected into part X of the KSP satellite. Remove this part before launch, or it will result in mission failure.', 'patch.txt': 'A patch has been created to fix the corrupted KSP part.' },
             'corrupted_files': { 'malware.txt': 'The malware has been injected into part X of the KSP satellite. Remove this part before launch, or it will result in mission failure.', 'patch.txt': 'A patch has been created to fix the corrupted KSP part.' },
             'intel_reports': { 'adversary.txt': 'Upcoming adversary launch detected. Orbit analysis shows it may interfere with our satellite.', 'launch_plans.txt': 'The adversary is planning a satellite launch on October 31, 2024.' },
             'tools': { 'hacker_guide.txt': 'Hacker toolset: Use these commands to extract sensitive files, disrupt communication channels, and mask our tracks.', 'malware_toolkit.txt': 'This toolkit includes various malicious software components designed to disrupt enemy satellites.' }
@@ -171,7 +194,9 @@
 
     function listFiles(showHidden = false) {
         const files = {
-            '~': ['corrupted_files/', 'intel_reports/', 'tools/'],
+            '~': ['home/', 'corrupted_files/', 'intel_reports/', 'tools/'],
+            'home': ['critical_files/'],
+            'home/critical_files': ['malware.txt', 'patch.txt'],
             'corrupted_files': ['malware.txt', 'patch.txt'],
             'intel_reports': ['adversary.txt', 'launch_plans.txt'],
             'tools': ['hacker_guide.txt', 'malware_toolkit.txt']

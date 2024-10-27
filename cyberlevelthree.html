@@ -115,14 +115,19 @@
             
             <p>Once you've completed these steps, your mission will be complete!</p>
         </div>
-
+	<button class="open-terminal" onclick="openLevelFour()">Proceed to Incident Response</button>
         <button class="open-terminal" onclick="openTerminal()">Open Terminal</button>
+        
     </div>
 
     <script>
         function openTerminal() {
             // Open the terminal in a new window
             window.open('cyberlevel15.html', '_blank');
+        }
+        function openLevelFour() {
+            // Open the terminal in same window
+            window.location.href = 'cyberlevelfour.html';
         }
     </script>
 </body>

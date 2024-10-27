@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cyber Mission Briefing - SSH Security</title>
+    <title>Cyber Mission Briefing - Incident Response</title>
     
     <!-- Load Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap" rel="stylesheet">
@@ -87,56 +87,49 @@
     </style>
 </head>
 <body>
-    <h1>Mission Briefing - SSH Security</h1>
+    <h1>Mission Briefing - Incident Response</h1>
 
     <div class="mission-briefing">
-        <p>A breach has been detected in your network. The adversary is attempting a brute-force attack to gain unauthorized SSH access to your system. Your mission is to secure the server and stop the attack before the adversary gains control.</p>
+        <p>A critical system has been infected with malware. The adversary is attempting to spread the malware through your network, compromising key assets. Your mission is to detect the malware, isolate the infected systems, and remove the malicious code before it spreads further.</p>
         
         <div class="objectives">
             <h2>Mission Objectives:</h2>
             <ul class="objective-list">
-                <li>1. Review SSH login attempts to identify the attack.</li>
-                <li>2. Disable root login to prevent unauthorized access.</li>
-                <li>3. Set up key-based authentication for extra security.</li>
-                <li>4. Block repeated login attempts using <strong>iptables</strong>.</li>
+                <li>1. Use <strong>log analysis</strong> to detect the malware.</li>
+                <li>2. Isolate the infected system using <strong>iptables</strong>.</li>
+                <li>3. Run a <strong>malware scan</strong> to find and remove malicious files.</li>
+                <li>4. Restore the system from backup and patch vulnerabilities.</li>
             </ul>
         </div>
 
         <div class="instruction">
             <h3>Step-by-Step Instructions:</h3>
-            <p><strong>Step 1:</strong> Review failed SSH login attempts.</p>
-            <p>Use this command to check for failed login attempts:</p>
-            <code>grep 'Failed password' /var/log/auth.log</code>
+            <p><strong>Step 1:</strong> Review the system logs for malware indicators.</p>
+            <code>grep 'malware' /var/log/system.log</code>
 
-            <p><strong>Step 2:</strong> Disable root login for SSH.</p>
-            <p>Edit the SSH configuration file to disable root login using this command:</p>
-            <code>nano /etc/ssh/sshd_config</code>
+            <p><strong>Step 2:</strong> Isolate the infected system by blocking its IP address:</p>
+            <code>iptables -A INPUT -s [Infected IP] -j DROP</code>
 
-            <p>Find the line that says <code>PermitRootLogin</code> and set it to <code>no</code>.</p>
+            <p><strong>Step 3:</strong> Run a full malware scan to detect and remove infected files:</p>
+            <code>malwarescan /home/critical_files</code>
 
-            <p><strong>Step 3:</strong> Restart the SSH service to apply the changes:</p>
-            <code>systemctl restart sshd</code>
-
-            <p><strong>Step 4:</strong> Block the attacker's IP using <strong>iptables</strong>:</p>
-            <code>iptables -A INPUT -s [Attacker IP] -j DROP</code>
-            <p>This command will drop all traffic from the attacker's IP.</p>
+            <p><strong>Step 4:</strong> Restore the system from a backup and apply patches:</p>
+            <code>restore /backup/critical_files</code>
+            <code>, patch -p1 /home/critical_files</code>
             
-            <p>Once you've completed these steps, proceed to the next mission.</p>
+            <p>Once you've completed these steps, proceed to secure the system!</p>
         </div>
-	<button class="open-terminal" onclick="openLevelThree()">Proceed to Network Defense</button>
+
         <button class="open-terminal" onclick="openTerminal()">Open Terminal</button>
     </div>
 
     <script>
         function openTerminal() {
-            // Open the terminal in a new window
-            window.open('cyberlevel15.html', '_blank');
-        }
-        function openLevelThree() {
-            // Open the third level in a new window
-            window.open('cyberlevelthree.html', '_blank');
+            // Open the terminal for Level 4 in a new window
+            window.open('cyberlevel4.html', '_blank');
         }
     </script>
 
 </body>
 </html>
+
