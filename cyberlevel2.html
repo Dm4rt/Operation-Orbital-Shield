@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>R3dSh1ft - Terminal</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #0f0;
+            font-family: monospace;
+            text-align: left;
+            padding: 20px;
+        }
+        #terminal {
+            border: 2px solid #0f0;
+            padding: 10px;
+            min-height: 400px;
+            margin-top: 20px;
+            overflow-y: auto;
+            max-height: 500px;
+        }
+        #inputLine {
+            color: #0f0;
+        }
+        input {
+            background-color: #000;
+            color: #0f0;
+            border: none;
+            width: 80%;
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+
+<h1>R3dSh1ft Server Terminal</h1>
+<div id="terminal">
+    <div id="output">
+        <p>Welcome to the R3dSh1ft secure server!</p>
+        <p>Type <strong>help</strong> to get a list of commands.</p>
+    </div>
+    <div id="inputLine">
+        <span>R3dSh1ft@server:~$</span>
+        <input type="text" id="commandInput" onkeydown="handleInput(event)">
+    </div>
+</div>
+
+<script>
+    const outputElement = document.getElementById('output');
+    let currentDirectory = "~";
+    let sshConfig = "PermitRootLogin yes\nPasswordAuthentication yes";
+    let iptablesRules = [];
+
+    function handleInput(event) {
+        if (event.key === 'Enter') {
+            const input = document.getElementById('commandInput').value.trim();
+            const response = handleCommand(input);
+            const newLine = document.createElement('p');
+            newLine.innerHTML = `<span>R3dSh1ft@server:${currentDirectory}$</span> ${input}`;
+            outputElement.appendChild(newLine);
+
+            const responseLine = document.createElement('p');
+            responseLine.innerHTML = response;
+            outputElement.appendChild(responseLine);
+
+            document.getElementById('commandInput').value = '';
+            document.getElementById('terminal').scrollTop = document.getElementById('terminal').scrollHeight;
+        }
+    }
+
+    function handleCommand(input) {
+        switch (input) {
+            case 'help':
+                return 'Available commands: grep, nano, systemctl, iptables, ls, cd [directory], cat [file], clear';
+            case 'grep \'Failed password\' /var/log/auth.log':
+                return "Jul 10 14:32:16 server sshd[2022]: Failed password for root from 192.168.1.100 port 22 ssh2\nJul 10 14:32:20 server sshd[2025]: Failed password for root from 192.168.1.101 port 22 ssh2";
+            case 'nano /etc/ssh/sshd_config':
+                sshConfig = sshConfig.replace("PermitRootLogin yes", "PermitRootLogin no");
+                return "Editing /etc/ssh/sshd_config... Changed 'PermitRootLogin' from 'yes' to 'no'.";
+            case 'systemctl restart sshd':
+                return sshConfig.includes("PermitRootLogin no") ? "SSH service restarted successfully!" : "Error: SSH config not correctly edited.";
+            case 'iptables -A INPUT -s 192.168.1.100 -j DROP':
+                iptablesRules.push("Blocked IP: 192.168.1.100");
+                return "IP 192.168.1.100 blocked successfully.";
+            case 'iptables -A INPUT -s 192.168.1.101 -j DROP':
+                iptablesRules.push("Blocked IP: 192.168.1.101");
+                return "IP 192.168.1.101 blocked successfully.";
+            case 'iptables -L':
+                return iptablesRules.length > 0 ? iptablesRules.join('\n') : 'No iptables rules are set.';
+            case 'ls':
+                return listFiles();
+            case 'clear':
+                outputElement.innerHTML = '';
+                return '';
+            default:
+                if (input.startsWith('cat ')) {
+                    const file = input.split(' ')[1];
+                    return readFile(file);
+                }
+                if (input.startsWith('cd ')) {
+                    const dir = input.split(' ')[1];
+                    return changeDirectory(dir);
+                }
+                return `Command not found: ${input}`;
+        }
+    }
+
+    function changeDirectory(dir) {
+        switch (dir) {
+            case 'corrupted_files':
+                currentDirectory = 'corrupted_files';
+                return 'Moved to corrupted_files directory. Use ls to view files.';
+            case 'intel_reports':
+                currentDirectory = 'intel_reports';
+                return 'Moved to intel_reports directory. Use ls to view files.';
+            case 'tools':
+                currentDirectory = 'tools';
+                return 'Moved to tools directory. Use ls to view available tools.';
+            case '..':
+                currentDirectory = '~';
+                return 'Moved back to root directory. Use ls to view directories.';
+            default:
+                return `Directory not found: ${dir}`;
+        }
+    }
+
+    function readFile(fileName) {
+        const files = {
+            '~': { '.secret_plan.txt': 'This plan involves sabotaging the Space Force KSP mission by corrupting key satellite components.' },
+            'corrupted_files': { 'malware.txt': 'The malware has been injected into part X of the KSP satellite. Remove this part before launch, or it will result in mission failure.', 'patch.txt': 'A patch has been created to fix the corrupted KSP part.' },
+            'intel_reports': { 'adversary.txt': 'Upcoming adversary launch detected. Orbit analysis shows it may interfere with our satellite.', 'launch_plans.txt': 'The adversary is planning a satellite launch on October 31, 2024.' },
+            'tools': { 'hacker_guide.txt': 'Hacker toolset: Use these commands to extract sensitive files, disrupt communication channels, and mask our tracks.', 'malware_toolkit.txt': 'This toolkit includes various malicious software components designed to disrupt enemy satellites.' }
+        };
+
+        const currentFiles = files[currentDirectory] || {};
+        return currentFiles[fileName] || `File not found: ${fileName}`;
+    }
+
+    function listFiles(showHidden = false) {
+        const files = {
+            '~': ['corrupted_files/', 'intel_reports/', 'tools/'],
+            'corrupted_files': ['malware.txt', 'patch.txt'],
+            'intel_reports': ['adversary.txt', 'launch_plans.txt'],
+            'tools': ['hacker_guide.txt', 'malware_toolkit.txt']
+        };
+
+        const hiddenFiles = { '~': ['.secret_plan.txt'] }; // Hidden file in root directory
+        const currentFiles = files[currentDirectory] || [];
+        const hidden = hiddenFiles[currentDirectory] || [];
+        return showHidden ? [...currentFiles, ...hidden].join('  ') : currentFiles.join('  ');
+    }
+</script>
+
+</body>
+</html>
+

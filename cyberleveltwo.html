@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Mission Briefing - SSH Security</title>
+    
+    <!-- Load Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            background-image: url('resources/images/pageBackground.jpg');
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            min-height: 100vh;
+            font-family: 'Roboto', sans-serif;
+            color: white;
+        }
+
+        h1 {
+            font-size: 3em;
+            color: white;
+            text-align: center;
+            text-shadow: 
+                -1px -1px 0 #000,  
+                1px -1px 0 #000,  
+                -1px 1px 0 #000,  
+                1px 1px 0 #000;
+            margin-top: 20px;
+        }
+
+        .mission-briefing {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px auto;
+            max-width: 900px;
+            text-align: center;
+        }
+
+        p {
+            font-size: 1.2em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        .objectives {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 8px;
+            text-align: left;
+        }
+
+        .objective-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .objective-list li {
+            margin: 10px 0;
+            font-size: 1.1em;
+        }
+
+        .instruction {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 8px;
+        }
+
+        .open-terminal {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .open-terminal:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Mission Briefing - SSH Security</h1>
+
+    <div class="mission-briefing">
+        <p>A breach has been detected in your network. The adversary is attempting a brute-force attack to gain unauthorized SSH access to your system. Your mission is to secure the server and stop the attack before the adversary gains control.</p>
+        
+        <div class="objectives">
+            <h2>Mission Objectives:</h2>
+            <ul class="objective-list">
+                <li>1. Review SSH login attempts to identify the attack.</li>
+                <li>2. Disable root login to prevent unauthorized access.</li>
+                <li>3. Set up key-based authentication for extra security.</li>
+                <li>4. Block repeated login attempts using <strong>iptables</strong>.</li>
+            </ul>
+        </div>
+
+        <div class="instruction">
+            <h3>Step-by-Step Instructions:</h3>
+            <p><strong>Step 1:</strong> Review failed SSH login attempts.</p>
+            <p>Use this command to check for failed login attempts:</p>
+            <code>grep 'Failed password' /var/log/auth.log</code>
+
+            <p><strong>Step 2:</strong> Disable root login for SSH.</p>
+            <p>Edit the SSH configuration file to disable root login using this command:</p>
+            <code>nano /etc/ssh/sshd_config</code>
+
+            <p>Find the line that says <code>PermitRootLogin</code> and set it to <code>no</code>.</p>
+
+            <p><strong>Step 3:</strong> Restart the SSH service to apply the changes:</p>
+            <code>systemctl restart sshd</code>
+
+            <p><strong>Step 4:</strong> Block the attacker's IP using <strong>iptables</strong>:</p>
+            <code>iptables -A INPUT -s [Attacker IP] -j DROP</code>
+            <p>This command will drop all traffic from the attacker's IP.</p>
+        </div>
+
+        <button class="open-terminal" onclick="openTerminal()">Open Terminal</button>
+    </div>
+
+    <script>
+        function openTerminal() {
+            // Open the terminal in a new window
+            window.open('cyberlevel15.html', '_blank');
+        }
+    </script>
+
+</body>
+</html>
+

@@ -110,23 +110,24 @@
     <!-- Display the link to the hacker page -->
     <div class="link-container">
         <p>Follow the link to investigate:</p>
-        <a href="R3dSh1ft.html" target="_blank" class="link">R3dSh1ft Adversary Domain</a>
+        <a href="R3dSh1ft.html" target="_blank" class="link">R3dSh1ft Adversary Domain</a><br><br>
+        <a href="cyberlevel15.html" target="_blank" class="link">R3dSh1ft Server</a>
     </div>
-
+    
     <!-- Search Input for answers -->
     <div class="input-container">
         <input type="text" id="searchQuery" class="input-box" placeholder="Enter discovered password">
         <button class="button" onclick="checkAnswer()">Submit</button>
     </div>
-
+    
     <script>
         function checkAnswer() {
             const searchQuery = document.getElementById('searchQuery').value.trim().toLowerCase();
-            const correctPassword = "s3mp3r5upra";  // The correct password to move to the next level
+            const correctPassword = "s3mp3r5upra";  // This is the correct password
 
             if (searchQuery === correctPassword) {
-                alert("Correct! You've accessed the R3dSh1ft servers.");
-                window.location.href = 'cyberlevel2.html';  // Redirect to the next level
+                alert("Correct! Use this password with username: R3dSh1ft to access the adversary servers.");
+                window.location.href = 'cyberleveltwo.html';  // Redirect to the next level
             } else {
                 alert("Incorrect. Keep searching for the password.");
             }
