@@ -41,31 +41,59 @@
         <p>Type <strong>help</strong> to get a list of commands.</p>
     </div>
     <div id="inputLine">
-        <span>R3dSh1ft@server:~$</span>
+        <span id="prompt">R3dSh1ft@server:~$</span>
         <input type="text" id="commandInput" onkeydown="handleInput(event)">
     </div>
 </div>
 
 <script>
     const outputElement = document.getElementById('output');
+    const promptElement = document.getElementById('prompt');
     let currentDirectory = "~";
     let sshConfig = "PermitRootLogin yes\nPasswordAuthentication yes";
     let iptablesRules = [];
+    let commandHistory = [];
+    let historyIndex = -1;
 
     function handleInput(event) {
+        const inputField = document.getElementById('commandInput');
         if (event.key === 'Enter') {
-            const input = document.getElementById('commandInput').value.trim();
+            const input = inputField.value.trim();
             const response = handleCommand(input);
+
+            // Add command to history and reset historyIndex
+            if (input) {
+                commandHistory.push(input);
+                historyIndex = commandHistory.length;
+            }
+
+            // Display entered command and response
             const newLine = document.createElement('p');
-            newLine.innerHTML = `<span>R3dSh1ft@server:${currentDirectory}$</span> ${input}`;
+            newLine.innerHTML = `<span>${promptElement.textContent}</span> ${input}`;
             outputElement.appendChild(newLine);
 
             const responseLine = document.createElement('p');
             responseLine.innerHTML = response;
             outputElement.appendChild(responseLine);
 
-            document.getElementById('commandInput').value = '';
-            document.getElementById('terminal').scrollTop = document.getElementById('terminal').scrollHeight;
+            // Clear input field and scroll to bottom
+            inputField.value = '';
+            outputElement.scrollTop = outputElement.scrollHeight;
+        } else if (event.key === 'ArrowUp') {
+            // Handle up arrow to go through command history
+            if (historyIndex > 0) {
+                historyIndex--;
+                inputField.value = commandHistory[historyIndex];
+            }
+        } else if (event.key === 'ArrowDown') {
+            // Handle down arrow to go through command history
+            if (historyIndex < commandHistory.length - 1) {
+                historyIndex++;
+                inputField.value = commandHistory[historyIndex];
+            } else {
+                inputField.value = '';
+                historyIndex = commandHistory.length;
+            }
         }
     }
 
@@ -109,16 +137,20 @@
     function changeDirectory(dir) {
         switch (dir) {
             case 'corrupted_files':
-                currentDirectory = 'corrupted_files';
+                currentDirectory = '~/corrupted_files';
+                updatePrompt();
                 return 'Moved to corrupted_files directory. Use ls to view files.';
             case 'intel_reports':
-                currentDirectory = 'intel_reports';
+                currentDirectory = '~/intel_reports';
+                updatePrompt();
                 return 'Moved to intel_reports directory. Use ls to view files.';
             case 'tools':
-                currentDirectory = 'tools';
+                currentDirectory = '~/tools';
+                updatePrompt();
                 return 'Moved to tools directory. Use ls to view available tools.';
             case '..':
                 currentDirectory = '~';
+                updatePrompt();
                 return 'Moved back to root directory. Use ls to view directories.';
             default:
                 return `Directory not found: ${dir}`;
@@ -149,6 +181,10 @@
         const currentFiles = files[currentDirectory] || [];
         const hidden = hiddenFiles[currentDirectory] || [];
         return showHidden ? [...currentFiles, ...hidden].join('  ') : currentFiles.join('  ');
+    }
+
+    function updatePrompt() {
+        promptElement.textContent = `R3dSh1ft@server:${currentDirectory}$`;
     }
 </script>
 
