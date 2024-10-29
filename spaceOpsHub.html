@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space Operations - Mission Hub</title>
+
+    <!-- Load Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            background-image: url('resources/images/pageBackground.jpg');
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            min-height: 100vh;
+            font-family: 'Roboto', sans-serif;
+            color: white;
+        }
+
+        h1 {
+            font-size: 3em;
+            color: white;
+            text-align: center;
+            text-shadow: 
+                -1px -1px 0 #000,  
+                1px -1px 0 #000,  
+                -1px 1px 0 #000,  
+                1px 1px 0 #000;
+            margin-top: 20px;
+        }
+
+        .content {
+            text-align: center;
+            font-size: 1.2em;
+            margin: 20px auto;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        .scenario {
+            text-align: left;
+            font-size: 1.2em;
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
+        }
+
+        .scenario p {
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .button-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            color: white;
+            background-color: #333;
+            border: none;
+            border-radius: 5px;
+            margin: 20px;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background-color: #555;
+        }
+
+        .image-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
+        }
+    </style>
+</head>
+<body>
+    <h1>Space Operations - Mission Hub</h1>
+    
+    <div class="content">
+        <p>Welcome to the Space Operations Mission Hub. Here, you will take on critical tasks that will test your knowledge and skills in space operations. Select a mission below to get started.</p>
+    </div>
+
+    <!-- Mission Scenario Description -->
+    <div class="scenario">
+        <h2>Mission Brief: Operation Orbital Shield</h2>
+        <p>In this mission, you are responsible for ensuring the successful launch and defense of a vital satellite tasked with communications and intelligence gathering. The satellite must be deployed into Low Earth Orbit (LEO), where it will be vulnerable to electromagnetic warfare (EMW) and adversarial threats.</p>
+
+        <p>Two primary tasks stand before you:</p>
+        <ol>
+            <li><strong>Satellite Launch:</strong> Your first task is to design and launch the satellite into orbit using the appropriate rocket configuration. Ensure that the satellite reaches its correct orbital parameters and remains stable in orbit.</li>
+            <li><strong>Electromagnetic Warfare Defense:</strong> Once the satellite is in orbit, it will face potential EMW attacks. Your second task is to defend the satellite by tuning frequencies, encrypting communications, and countering jamming signals.</li>
+        </ol>
+
+        <p>Choose your mission:</p>
+    </div>
+
+    <!-- Display the Mission Image -->
+    <div class="image-container">
+        <img src="resources/images/spaceOpsB.jpg" alt="Space Operations Satellite Mission">
+    </div>
+
+    <!-- Mission Buttons -->
+    <div class="button-container">
+        <a href="spaceopslevel1.html" class="button">Launch the Satellite</a>
+        <a href="spaceopslevelone.html" class="button">Electromagnetic Warfare Defense</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electromagnetic Warfare Simulation with Visuals</title>
+    
+    <!-- Load Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            background-image: url('resources/images/pageBackground.jpg');
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            min-height: 100vh;
+            font-family: 'Roboto', sans-serif;
+            color: white;
+        }
+
+        h1 {
+            font-size: 3em;
+            color: white;
+            text-align: center;
+            text-shadow: 
+                -1px -1px 0 #000,  
+                1px -1px 0 #000,  
+                -1px 1px 0 #000,  
+                1px 1px 0 #000;
+            margin-top: 20px;
+        }
+
+        .content {
+            text-align: center;
+            font-size: 1.2em;
+            margin: 20px auto;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        .simulation-container {
+            text-align: center;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
+        }
+
+        .slider-container {
+            margin-top: 20px;
+        }
+
+        .slider-label {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .frequency-display {
+            font-size: 2em;
+            margin: 10px;
+            color: #FFD700;
+        }
+
+        .slider {
+            width: 100%;
+            margin: 10px 0;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            color: white;
+            background-color: #333;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+        }
+
+        .button:hover {
+            background-color: #555;
+        }
+
+        .interference-warning {
+            font-size: 1.5em;
+            color: #FF6347;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        .safe {
+            color: #32CD32;
+        }
+
+        .interference {
+            color: #FF6347;
+        }
+
+        .canvas-container {
+            margin: 20px auto;
+            text-align: center;
+        }
+
+        .log {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Electromagnetic Warfare Simulation</h1>
+    
+    <div class="content">
+        <p>Use the slider to tune the frequency. Your mission is to find the right frequency to avoid adversary jamming. Watch for interference warnings and respond by adjusting the frequency or encrypting the communication.</p>
+    </div>
+
+    <div class="simulation-container">
+        <div class="slider-container">
+            <div class="slider-label">Frequency (MHz)</div>
+            <input type="range" id="frequencySlider" class="slider" min="1" max="100" value="50" oninput="updateFrequency()">
+            <div class="frequency-display" id="frequencyDisplay">50 MHz</div>
+        </div>
+
+        <div class="canvas-container">
+            <canvas id="frequencyCanvas" width="800" height="200"></canvas>
+        </div>
+
+        <div class="button-container">
+            <button class="button" onclick="encryptSignal()">Encrypt Signal</button>
+            <button class="button" onclick="switchChannel()">Switch Channel</button>
+        </div>
+
+        <div class="interference-warning" id="interferenceWarning"></div>
+        <div class="log" id="log"></div>
+    </div>
+
+    <script>
+        let interferenceFrequencies = [20, 40, 60, 80]; // Simulated frequencies with interference
+        let currentFrequency = 50;
+        let encrypted = false;
+
+        function updateFrequency() {
+            let slider = document.getElementById("frequencySlider");
+            currentFrequency = slider.value;
+            document.getElementById("frequencyDisplay").textContent = currentFrequency + " MHz";
+
+            checkInterference();
+            drawFrequencySpectrum();
+        }
+
+        function checkInterference() {
+            let interferenceWarning = document.getElementById("interferenceWarning");
+            if (interferenceFrequencies.includes(parseInt(currentFrequency))) {
+                interferenceWarning.textContent = "Interference Detected!";
+                interferenceWarning.classList.remove("safe");
+                interferenceWarning.classList.add("interference");
+            } else {
+                interferenceWarning.textContent = "Frequency is Safe.";
+                interferenceWarning.classList.remove("interference");
+                interferenceWarning.classList.add("safe");
+            }
+        }
+
+        function encryptSignal() {
+            encrypted = true;
+            document.getElementById("log").textContent = "Signal encrypted! Secure communication channel established.";
+        }
+
+        function switchChannel() {
+            let newFrequency = Math.floor(Math.random() * 100) + 1;
+            document.getElementById("frequencySlider").value = newFrequency;
+            document.getElementById("frequencyDisplay").textContent = newFrequency + " MHz";
+            currentFrequency = newFrequency;
+
+            document.getElementById("log").textContent = `Switched to a new frequency: ${newFrequency} MHz.`;
+            checkInterference();
+            drawFrequencySpectrum();
+        }
+
+        // Drawing the frequency spectrum
+        function drawFrequencySpectrum() {
+            let canvas = document.getElementById("frequencyCanvas");
+            let ctx = canvas.getContext("2d");
+
+            // Clear canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Define spectrum visualization
+            let spectrumWidth = canvas.width;
+            let spectrumHeight = canvas.height;
+            let numFrequencies = 100;  // 100 MHz range
+            let barWidth = spectrumWidth / numFrequencies;
+
+            // Draw the frequency bars
+            for (let i = 0; i < numFrequencies; i++) {
+                let barHeight = Math.random() * spectrumHeight * 0.5; // Random height to simulate signal
+
+                // Color the bar based on interference
+                if (interferenceFrequencies.includes(i + 1)) {
+                    ctx.fillStyle = "#FF6347"; // Red for interference
+                } else {
+                    ctx.fillStyle = "#32CD32"; // Green for safe
+                }
+
+                // Highlight the current frequency
+                if (i + 1 === parseInt(currentFrequency)) {
+                    ctx.fillStyle = "#FFD700";  // Yellow for the selected frequency
+                    barHeight = spectrumHeight * 0.9;  // Make it taller for emphasis
+                }
+
+                // Draw the bar
+                ctx.fillRect(i * barWidth, spectrumHeight - barHeight, barWidth, barHeight);
+            }
+        }
+
+        // Initial setup
+        drawFrequencySpectrum();
+        checkInterference();
+    </script>
+</body>
+</html>

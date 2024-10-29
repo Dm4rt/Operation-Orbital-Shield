@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mission Briefing - Network Defense</title>
+    <title>Mission Briefing - Detect & Disable Malware</title>
     
     <!-- Load Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap" rel="stylesheet">
@@ -87,49 +87,50 @@
     </style>
 </head>
 <body>
-    <h1>Mission Briefing - Network Defense</h1>
+    <h1>Mission Briefing - Detect & Disable Malware</h1>
 
     <div class="mission-briefing">
-        <p>Your network is under threat from an adversary planning a coordinated cyberattack. Your task is to identify suspicious activity, analyze the logs, and block any malicious IPs that attempt to breach the system.</p>
+        <p>R3dSh1ft has deployed a malicious script designed to retain access to this server. Your mission is to locate this backdoor, analyze its behavior, and disable it before further damage can occur.</p>
         
         <div class="objectives">
             <h2>Mission Objectives:</h2>
             <ul class="objective-list">
-                <li>1. Use <strong>Nmap</strong> to scan for active threats.</li>
-                <li>2. Analyze the network logs to detect suspicious activity.</li>
-                <li>3. Set up firewall rules using <strong>iptables</strong> to block malicious IPs.</li>
+                <li>1. Use the <strong>find</strong> command to search for hidden malicious scripts on the server.</li>
+                <li>2. Analyze the contents of the script to determine its purpose.</li>
+                <li>3. Disable or remove the script to prevent it from executing.</li>
             </ul>
         </div>
 
         <div class="instruction">
             <h3>Step-by-Step Instructions:</h3>
-            <p><strong>Step 1:</strong> Scan the network for suspicious connections using <strong>Nmap</strong>:</p>
-            <code>nmap -sS 192.168.1.0/24</code>
+            <p><strong>Step 1:</strong> Search for malicious shell scripts that R3dSh1ft may have hidden:</p>
+            <code>find / -name ".r3dsh1ft*.sh" 2>/dev/null</code>
+            <p>This command will search the file system for any shell scripts related to R3dSh1ft.</p>
 
-            <p><strong>Step 2:</strong> Review the network logs for any suspicious connections:</p>
-            <code>grep 'Suspicious connection' /var/log/network.log</code>
+            <p><strong>Step 2:</strong> Analyze the contents of any discovered scripts:</p>
+            <code>cat .r3dsh1ft_backdoor.sh</code>
 
-            <p><strong>Step 3:</strong> Block any suspicious IP addresses using <strong>iptables</strong>:</p>
-            <code>iptables -A INPUT -s [Suspicious IP] -j DROP</code>
-            <p>This will prevent the attacker from accessing your network.</p>
-            
-            <p>Once you've completed these steps, your mission will be complete!</p>
+            <p><strong>Step 3:</strong> Disable or remove the script:</p>
+            <code>rm .r3dsh1ft_backdoor.sh</code>
+            <p>This will delete the backdoor script from the system.</p>
+
+            <p><strong>Step 4:</strong> Confirm no other malicious scripts remain using <strong>find</strong>.</p>
         </div>
-	<button class="open-terminal" onclick="openLevelFour()">Proceed to Incident Response</button>
+
+        <button class="open-terminal" onclick="openNextLevel()">Proceed to Final Mission</button>
         <button class="open-terminal" onclick="openTerminal()">Open Terminal</button>
-        
     </div>
 
     <script>
         function openTerminal() {
             // Open the terminal in a new window
-            window.open('cyberlevel15.html', '_blank');
+            window.open('cyberlevelterminal.html', '_blank');
         }
-        function openLevelFour() {
-            // Open the terminal in same window
+        function openNextLevel() {
+            // Open the next level in the same window
             window.location.href = 'cyberlevelfour.html';
         }
     </script>
+
 </body>
 </html>
-
