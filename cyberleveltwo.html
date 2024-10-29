@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cyber Mission Briefing - SSH Security</title>
-    
+    <title>Cyber Mission Briefing - Uncover Intel</title>
+
     <!-- Load Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap" rel="stylesheet">
 
@@ -84,59 +84,102 @@
         .open-terminal:hover {
             background-color: #0056b3;
         }
+
+        .terminal-output {
+            font-family: monospace;
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 15px;
+        }
+
+        .command-list {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .command-list h3 {
+            margin-bottom: 10px;
+        }
+
+        .command-list ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .command-list li {
+            margin: 8px 0;
+            font-size: 1.1em;
+        }
     </style>
 </head>
 <body>
-    <h1>Mission Briefing - SSH Security</h1>
+    <h1>Mission Briefing - Uncover Intel</h1>
 
     <div class="mission-briefing">
-        <p>A breach has been detected in your network. The adversary is attempting a brute-force attack to gain unauthorized SSH access to your system. Your mission is to secure the server and stop the attack before the adversary gains control.</p>
+        <p>Welcome back, Operator. You've successfully gained access to R3dSh1ft's server. Your next task is to locate sensitive intel files that provide more insights into their next operations.</p>
         
         <div class="objectives">
             <h2>Mission Objectives:</h2>
             <ul class="objective-list">
-                <li>1. Review SSH login attempts to identify the attack.</li>
-                <li>2. Disable root login to prevent unauthorized access.</li>
-                <li>3. Set up key-based authentication for extra security.</li>
-                <li>4. Block repeated login attempts using <strong>iptables</strong>.</li>
+                <li>1. Search through system directories to find files of interest.</li>
+                <li>2. Use basic command-line tools to review the contents of suspicious files.</li>
+                <li>3. Extract key intel and determine the hacker group’s next target.</li>
             </ul>
         </div>
 
         <div class="instruction">
             <h3>Step-by-Step Instructions:</h3>
-            <p><strong>Step 1:</strong> Review failed SSH login attempts.</p>
-            <p>Use this command to check for failed login attempts:</p>
-            <code>grep 'Failed password' /var/log/auth.log</code>
+            <p><strong>Step 1:</strong> Check available directories:</p>
+            <code>ls</code>
 
-            <p><strong>Step 2:</strong> Disable root login for SSH.</p>
-            <p>Edit the SSH configuration file to disable root login using this command:</p>
-            <code>nano /etc/ssh/sshd_config</code>
+            <p><strong>Step 2:</strong> Navigate into any <code>folder</code> directory:</p>
+            <code>cd folder</code>
 
-            <p>Find the line that says <code>PermitRootLogin</code> and set it to <code>no</code>.</p>
+            <p><strong>Step 3:</strong> Review the contents of various <code>file.txt</code> files:</p>
+            <code>cat file.txt</code>
 
-            <p><strong>Step 3:</strong> Restart the SSH service to apply the changes:</p>
-            <code>systemctl restart sshd</code>
-
-            <p><strong>Step 4:</strong> Block the attacker's IP using <strong>iptables</strong>:</p>
-            <code>iptables -A INPUT -s [Attacker IP] -j DROP</code>
-            <p>This command will drop all traffic from the attacker's IP.</p>
-            
-            <p>Once you've completed these steps, proceed to the next mission.</p>
+            <div class="terminal-output">
+                [R3dSh1ft@ip-172-31-12-185 ~]$ <br>
+                <strong>cat file.txt</strong> <br>
+                --- <br>
+                "Example: Operation Eagle Strike scheduled for November 1st. Target: Space Force orbital communications satellite. Command Center will execute attack from 22:00 to 23:00 UTC. Use backdoor malware to gain access." <br>
+                ---
+            </div>
         </div>
-	<button class="open-terminal" onclick="openLevelThree()">Proceed to Network Defense</button>
-        <button class="open-terminal" onclick="openTerminal()">Open Terminal</button>
+
+        <!-- Basic Linux Command List -->
+        <div class="command-list">
+            <h3>Useful Linux Commands:</h3>
+            <ul>
+                <li><strong>ls</strong> - List all files and directories in the current directory.</li>
+                <li><strong>cd [directory]</strong> - Change directory to the specified one.</li>
+                <li><strong>cat [file]</strong> - Display the content of a text file.</li>
+                <li><strong>pwd</strong> - Display the current directory path.</li>
+                <li><strong>rm [file]</strong> - Delete a specific file.</li>
+                <li><strong>mv [source] [destination]</strong> - Move or rename a file.</li>
+                <li><strong>cp [source] [destination]</strong> - Copy a file from one location to another.</li>
+                <li><strong>touch [file]</strong> - Create a new empty file.</li>
+                <li><strong>nano [file]</strong> - Open a text file in a basic terminal text editor.</li>
+            </ul>
+        </div>
+
+	 <button class="open-terminal" onclick="goBack()">Go Back</button>
+        <button class="open-terminal" onclick="openTerminal()">Go to Next Mission</button>
     </div>
 
     <script>
         function openTerminal() {
-            // Open the terminal in a new window
-            window.open('cyberlevel15.html', '_blank');
+            // Open the terminal interface in a new window or next level
+            window.location.href = 'cyberlevelthree.html';  // Redirect to the next level
         }
-        function openLevelThree() {
-            // Open the third level in a new window
-            window.open('cyberlevelthree.html', '_blank');
+        function goBack() {
+            // Open the terminal interface in a new window or next level
+            window.location.href = 'cyberlevel1.html';  // Redirect to the next level
         }
     </script>
-
 </body>
 </html>
+

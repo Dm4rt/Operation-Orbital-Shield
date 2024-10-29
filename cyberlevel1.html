@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cyber Defense - Level 1</title>
+    <title>Cyber Mission Briefing - Initial Recon</title>
     
     <!-- Load Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap" rel="stylesheet">
@@ -16,6 +16,7 @@
             margin: 0;
             min-height: 100vh;
             font-family: 'Roboto', sans-serif;
+            color: white;
         }
 
         h1 {
@@ -30,108 +31,114 @@
             margin-top: 20px;
         }
 
-        .content {
-            text-align: center;
-            color: white;
-            font-size: 1.2em;
+        .mission-briefing {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
             margin: 20px auto;
+            max-width: 900px;
+            text-align: center;
+        }
+
+        p {
+            font-size: 1.2em;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
         }
 
+        .objectives {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 8px;
+            text-align: left;
+        }
+
+        .objective-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .objective-list li {
+            margin: 10px 0;
+            font-size: 1.1em;
+        }
+
+        .instruction {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 8px;
+        }
+
+        .open-terminal {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .open-terminal:hover {
+            background-color: #0056b3;
+        }
+
+        /* Image Styling */
         .image-container {
             text-align: center;
             margin-top: 30px;
         }
 
         .image-container img {
-            max-width: 70%;
+            max-width: 80%;
             height: auto;
             border-radius: 10px;
         }
 
-        .input-container {
-            text-align: center;
-            margin-top: 30px;
-        }
-
-        .input-box {
-            padding: 10px;
-            width: 50%;
-            font-size: 1.2em;
-            border-radius: 5px;
-            border: 1px solid #333;
-        }
-
-        .button {
-            display: inline-block;
-            padding: 10px 20px;
-            font-size: 1.2em;
-            color: white;
-            background-color: #333;
-            border: none;
-            border-radius: 5px;
-            margin: 20px;
-            cursor: pointer;
-        }
-
-        .button:hover {
-            background-color: #555;
-        }
-
-        .link-container {
-            margin-top: 30px;
-            text-align: center;
-        }
-
-        .link {
-            font-size: 1.2em;
-            color: #FFD700;
-            text-decoration: none;
-        }
-
-        .link:hover {
-            text-decoration: underline;
-        }
     </style>
 </head>
 <body>
-    <h1>Cyber Defense - Level 1</h1>
-    
-    <div class="content">
-        <p>The hacker group <strong>R3dSh1ft</strong>, believed to be a state-sponsored actor, has been targeting Space Force systems with a range of cyberattacks, from DoS assaults on ground stations to ransomware attacks on system backups. Follow the steps below to neutralize their threat!</p>
-        <p>We've discovered an entry point into their servers, but it's secured by a password, and we currently have no leads on what it could be. We need to gather more intel on the group that might reveal the password. Use the website provided by our intelligence team to uncover potential clues.</p>
+    <h1>Mission Briefing - Initial Recon</h1>
+
+    <div class="mission-briefing">
+        <p>The hacker group <strong>R3dSh1ft</strong>, believed to be a state-sponsored actor, has been targeting Space Force systems. Your mission is to uncover key intel on their operations and gain access to their systems.</p>
+        
+        <div class="objectives">
+            <h2>Mission Objectives:</h2>
+            <ul class="objective-list">
+                <li>1. Find the password hidden on the R3dSh1ft adversary page.</li>
+                <li>2. Inspect the HTML of their page to find the IP address for connection.</li>
+                <li>3. Use SSH to connect using username <strong>R3dSh1ft</strong> and port 22.</li>
+            </ul>
+        </div>
+
+        <div class="instruction">
+            <h3>Step-by-Step Instructions:</h3>
+            <p><strong>Step 1:</strong> Investigate the page linked below to find the password and IP address.</p>
+
+            <p><strong>Step 2:</strong> Once you find the password and IP, connect using this command:</p>
+            <code>ssh -p 22 R3dSh1ft@[IP Address]</code>
+
+            <p><strong>Step 3:</strong> Use the gathered information to proceed to the next mission.</p>
+        </div>
+
+        <!-- Image of R3dSh1ft Hacker Group -->
+        <div class="image-container">
+            <img src="resources/images/R3dSh1ft.jpg" alt="R3dSh1ft Hacker Group">
+        </div>
+
+        <button class="open-terminal" onclick="openNextMission()">Proceed to Basic Commands</button>
     </div>
 
-    <!-- Display the R3dSh1ft image -->
-    <div class="image-container">
-        <img src="resources/images/R3dSh1ft.jpg" alt="R3dSh1ft Hacker Group">
-    </div>
-
-    <!-- Display the link to the hacker page -->
-    <div class="link-container">
-        <p>Follow the link to investigate:</p>
-        <a href="R3dSh1ft.html" target="_blank" class="link">R3dSh1ft Adversary Domain</a><br><br>
-        <a href="cyberlevel15.html" target="_blank" class="link">R3dSh1ft Server</a>
-    </div>
-    
-    <!-- Search Input for answers -->
-    <div class="input-container">
-        <input type="text" id="searchQuery" class="input-box" placeholder="Enter discovered password">
-        <button class="button" onclick="checkAnswer()">Submit</button>
-    </div>
-    
     <script>
-        function checkAnswer() {
-            const searchQuery = document.getElementById('searchQuery').value.trim().toLowerCase();
-            const correctPassword = "s3mp3r5upra";  // This is the correct password
-
-            if (searchQuery === correctPassword) {
-                alert("Correct! Use this password with username: R3dSh1ft to access the adversary servers.");
-                window.location.href = 'cyberleveltwo.html';  // Redirect to the next level
-            } else {
-                alert("Incorrect. Keep searching for the password.");
-            }
+        function openNextMission() {
+            // Redirect to the next level
+            window.location.href = 'cyberleveltwo.html';
         }
     </script>
+
 </body>
 </html>
+
