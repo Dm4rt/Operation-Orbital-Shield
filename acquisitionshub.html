@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acquisitions & Dev Engineers Hub - Operation Orbital Shield</title>
+    
+    <!-- Load Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            background-image: url('resources/images/pageBackground.jpg');
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            min-height: 100vh;
+            font-family: 'Roboto', sans-serif;
+            color: white;
+        }
+
+        h1 {
+            font-size: 3em;
+            color: white;
+            text-align: center;
+            text-shadow: 
+                -1px -1px 0 #000,  
+                1px -1px 0 #000,  
+                -1px 1px 0 #000,  
+                1px 1px 0 #000;
+            margin-top: 20px;
+        }
+
+        .content {
+            text-align: center;
+            color: white;
+            font-size: 1.2em;
+            margin: 20px auto;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            max-width: 900px;
+        }
+
+        .image-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            margin: 30px auto;
+            max-width: 1000px;
+        }
+
+        .image-container img {
+            border-radius: 10px;
+        }
+
+        /* Left image */
+        .image-container img:first-child {
+            max-width: 40%;
+            margin-right: 20px;
+        }
+
+        /* Right image */
+        .image-container img:last-child {
+            max-width: 50%;
+            margin-left: 20px;
+        }
+
+        .button-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            color: white;
+            background-color: #333;
+            border: none;
+            border-radius: 5px;
+            margin: 10px;
+            cursor: pointer;
+            text-decoration: none;
+            width: 250px;
+        }
+
+        .button:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <h1>Acquisitions & Dev Engineers Hub</h1>
+    
+    <div class="content">
+        <p>Welcome to the <strong>Acquisitions and Development Engineers</strong> track for <strong>Operation Orbital Shield</strong>. Your mission is to support the space operations team by selecting, managing, and assembling the right contracts to ensure the successful launch of a satellite into Low Earth Orbit (LEO).</p>
+        <p>You will work in phases, starting with the acquisition of necessary rocket parts and ending with a full rocket assembly ready for the launch team.</p>
+    </div>
+
+    <!-- Display the images side by side -->
+    <div class="image-container">
+        <img src="resources/images/kspBlueprint.jpg" alt="KSP Rocket Blueprint">
+        <img src="resources/images/kspBlueprintB.jpg" alt="KSP Satellite Blueprint">
+    </div>
+
+    <!-- Button container for navigation -->
+    <div class="button-container">
+        <a href="aPhase1.html" class="button">Phase 1: Contract Acquisition</a>
+        <a href="aPhase2.html" class="button">Phase 2: Rocket Assembly</a>
+        <a href="aPhase3.html" class="button">Phase 3: Final Review</a>
+        <a href="ksppartslist.html" class="button">KSP Parts List</a>
+    </div>
+</body>
+</html>
