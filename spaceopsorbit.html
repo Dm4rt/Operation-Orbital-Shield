@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Satellite Orbit Visualizations</title>
+
+    <!-- Load Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            background-image: url('resources/images/pageBackground.jpg');
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            min-height: 100vh;
+            font-family: 'Roboto', sans-serif;
+            color: white;
+        }
+
+        h1 {
+            font-size: 3em;
+            color: white;
+            text-align: center;
+            text-shadow: 
+                -1px -1px 0 #000,  
+                1px -1px 0 #000,  
+                -1px 1px 0 #000,  
+                1px 1px 0 #000;
+            margin-top: 20px;
+        }
+
+        .content {
+            text-align: center;
+            font-size: 1.2em;
+            margin: 20px auto;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        .iframe-container {
+            display: flex;
+            justify-content: center;
+            margin: 20px auto;
+        }
+
+        iframe {
+            width: 90%;
+            height: 600px;
+            border: 2px solid white;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Live Satellite Orbit Visualizations</h1>
+
+    <div class="content">
+        <p>Below are two live satellite tracking visualizations. Both are interactive 3D visualization of satellite orbits.</p>
+    </div>
+
+   <div class="content">
+        <p>Explore real-time visualizations of satellites and objects in space below. These objects often communicate using various frequencies, adding another layer of insight into the electromagnetic spectrum.</p>
+    </div>
+
+    <!-- Stuff in Space Embed -->
+    <div class="iframe-container">
+        <iframe src="https://stuffin.space/" width="100%" height="600px" frameborder="0" allowfullscreen></iframe>
+    </div>
+
+    <div class="content">
+        <p>Explore a 3D view of satellites in orbit below. You can rotate, zoom, and select specific satellites in real time.</p>
+    </div>
+
+    <!-- 3D Satellite Tracking (Satellite Tracker 3D) -->
+    <div class="iframe-container">
+        <iframe src="https://satellitetracker3d.com/" width="100%" height="600px" frameborder="0" allowfullscreen></iframe>
+    </div>
+</body>
+</html>

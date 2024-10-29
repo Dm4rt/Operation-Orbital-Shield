@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Electromagnetic Warfare Simulation with Visuals</title>
-    
+    <title>Operation Radio Silence - Electromagnetic Warfare Mission</title>
+
     <!-- Load Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap" rel="stylesheet">
 
@@ -38,188 +38,167 @@
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
         }
 
-        .simulation-container {
-            text-align: center;
-            max-width: 800px;
+        .iframe-container {
+            display: flex;
+            justify-content: center;
             margin: 20px auto;
-            padding: 20px;
+        }
+
+        iframe {
+            width: 90%;
+            height: 600px;
+            border: 2px solid white;
+            border-radius: 10px;
+        }
+
+        .slider-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .slider {
+            width: 50%;
+        }
+
+        .frequency-display {
+            font-size: 1.5em;
+            color: #FFD700;
+            margin: 10px;
+        }
+
+        .task-message {
+            margin-top: 20px;
+            color: #FFD700;
+            font-size: 1.2em;
+        }
+
+        .objective {
+            font-size: 1.5em;
+            color: #FFD700;
+            margin-bottom: 20px;
+            padding: 10px;
+            border-radius: 10px;
             background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .mission-brief {
+            font-size: 1.2em;
+            color: white;
+            margin: 20px;
+            text-align: left;
+            max-width: 800px;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 20px;
             border-radius: 10px;
             box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
         }
 
-        .slider-container {
-            margin-top: 20px;
+        ol {
+            margin-left: 20px;
+            text-align: left;
         }
 
-        .slider-label {
-            font-size: 1.2em;
-            margin-bottom: 10px;
-        }
-
-        .frequency-display {
-            font-size: 2em;
-            margin: 10px;
-            color: #FFD700;
-        }
-
-        .slider {
-            width: 100%;
-            margin: 10px 0;
-        }
-
-        .button {
-            display: inline-block;
+        .encrypt-button {
             padding: 10px 20px;
             font-size: 1.2em;
-            color: white;
             background-color: #333;
+            color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            margin: 10px;
         }
 
-        .button:hover {
+        .encrypt-button:hover {
             background-color: #555;
         }
 
-        .interference-warning {
-            font-size: 1.5em;
-            color: #FF6347;
-            margin-top: 20px;
-            font-weight: bold;
-        }
-
-        .safe {
-            color: #32CD32;
-        }
-
-        .interference {
-            color: #FF6347;
-        }
-
-        .canvas-container {
-            margin: 20px auto;
-            text-align: center;
-        }
-
-        .log {
-            margin-top: 20px;
-            font-size: 1.2em;
-            color: white;
-        }
     </style>
 </head>
 <body>
-    <h1>Electromagnetic Warfare Simulation</h1>
-    
-    <div class="content">
-        <p>Use the slider to tune the frequency. Your mission is to find the right frequency to avoid adversary jamming. Watch for interference warnings and respond by adjusting the frequency or encrypting the communication.</p>
+    <h1>Operation Radio Silence</h1>
+
+    <!-- Mission Brief -->
+    <div class="mission-brief">
+        <h2>Mission Brief</h2>
+        <p>You are tasked with conducting covert operations to secure military communications. Enemy forces are using advanced electromagnetic warfare (EMW) tactics to disrupt communication lines. Your objective is to detect interference, counteract jamming, and maintain secure satellite communications.</p>
+
+        <h3>Objectives</h3>
+        <ol>
+            <li>Monitor the electromagnetic spectrum for jamming and interference.</li>
+            <li>Hop between frequencies to avoid detection and ensure continuous secure communication.</li>
+            <li>Deploy counter-jamming measures and encryption to protect transmissions.</li>
+            <li>Intercept enemy communications without revealing your position.</li>
+        </ol>
     </div>
 
-    <div class="simulation-container">
-        <div class="slider-container">
-            <div class="slider-label">Frequency (MHz)</div>
-            <input type="range" id="frequencySlider" class="slider" min="1" max="100" value="50" oninput="updateFrequency()">
-            <div class="frequency-display" id="frequencyDisplay">50 MHz</div>
-        </div>
+    <!-- Objective Status -->
+    <div class="objective" id="objectiveStatus">Current Objective: Monitor the spectrum for interference.</div>
 
-        <div class="canvas-container">
-            <canvas id="frequencyCanvas" width="800" height="200"></canvas>
-        </div>
+    <!-- 3D Electromagnetic Spectrum Visualizer Embed (Stuff in Space) -->
+    <div class="iframe-container">
+        <iframe src="https://stuffin.space/" width="100%" height="600px" frameborder="0" allowfullscreen></iframe>
+    </div>
 
-        <div class="button-container">
-            <button class="button" onclick="encryptSignal()">Encrypt Signal</button>
-            <button class="button" onclick="switchChannel()">Switch Channel</button>
-        </div>
+    <!-- Frequency Tuning Slider -->
+    <div class="slider-container">
+        <input type="range" id="frequencySlider" class="slider" min="1" max="300" value="150" oninput="updateFrequency()">
+        <div class="frequency-display" id="frequencyDisplay">Frequency: 150 MHz</div>
+    </div>
 
-        <div class="interference-warning" id="interferenceWarning"></div>
-        <div class="log" id="log"></div>
+    <!-- Task Feedback -->
+    <div class="task-message" id="taskMessage"></div>
+
+    <!-- Encrypt Signal Button -->
+    <div class="slider-container">
+        <button class="encrypt-button" onclick="encryptSignal()">Encrypt Communication</button>
+        <div id="encryptionStatus" style="color: lightgreen; margin-top: 10px;"></div>
     </div>
 
     <script>
-        let interferenceFrequencies = [20, 40, 60, 80]; // Simulated frequencies with interference
-        let currentFrequency = 50;
+        // Define task objectives with target frequencies
+        const tasks = [
+            { frequency: 50, message: "Enemy jamming detected. Hop to another frequency.", success: false },
+            { frequency: 100, message: "Secure communication established.", success: true },
+            { frequency: 250, message: "Enemy signal intercepted." }
+        ];
+
+        let currentFrequency = 150;
         let encrypted = false;
 
         function updateFrequency() {
-            let slider = document.getElementById("frequencySlider");
+            const slider = document.getElementById("frequencySlider");
             currentFrequency = slider.value;
-            document.getElementById("frequencyDisplay").textContent = currentFrequency + " MHz";
+            document.getElementById("frequencyDisplay").textContent = "Frequency: " + currentFrequency + " MHz";
 
-            checkInterference();
-            drawFrequencySpectrum();
-        }
+            const taskMessage = document.getElementById("taskMessage");
+            let foundTask = false;
 
-        function checkInterference() {
-            let interferenceWarning = document.getElementById("interferenceWarning");
-            if (interferenceFrequencies.includes(parseInt(currentFrequency))) {
-                interferenceWarning.textContent = "Interference Detected!";
-                interferenceWarning.classList.remove("safe");
-                interferenceWarning.classList.add("interference");
-            } else {
-                interferenceWarning.textContent = "Frequency is Safe.";
-                interferenceWarning.classList.remove("interference");
-                interferenceWarning.classList.add("safe");
+            tasks.forEach(task => {
+                if (Math.abs(currentFrequency - task.frequency) <= 10) {
+                    taskMessage.textContent = task.message;
+                    document.getElementById("objectiveStatus").textContent = "Current Objective: " + (task.success ? "Maintain secure communication" : "Switch frequency to avoid detection.");
+                    foundTask = true;
+                }
+            });
+
+            if (!foundTask) {
+                taskMessage.textContent = "No interference detected. Continue monitoring.";
+                document.getElementById("objectiveStatus").textContent = "Current Objective: Monitor the spectrum for interference.";
             }
         }
 
         function encryptSignal() {
-            encrypted = true;
-            document.getElementById("log").textContent = "Signal encrypted! Secure communication channel established.";
-        }
-
-        function switchChannel() {
-            let newFrequency = Math.floor(Math.random() * 100) + 1;
-            document.getElementById("frequencySlider").value = newFrequency;
-            document.getElementById("frequencyDisplay").textContent = newFrequency + " MHz";
-            currentFrequency = newFrequency;
-
-            document.getElementById("log").textContent = `Switched to a new frequency: ${newFrequency} MHz.`;
-            checkInterference();
-            drawFrequencySpectrum();
-        }
-
-        // Drawing the frequency spectrum
-        function drawFrequencySpectrum() {
-            let canvas = document.getElementById("frequencyCanvas");
-            let ctx = canvas.getContext("2d");
-
-            // Clear canvas
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-            // Define spectrum visualization
-            let spectrumWidth = canvas.width;
-            let spectrumHeight = canvas.height;
-            let numFrequencies = 100;  // 100 MHz range
-            let barWidth = spectrumWidth / numFrequencies;
-
-            // Draw the frequency bars
-            for (let i = 0; i < numFrequencies; i++) {
-                let barHeight = Math.random() * spectrumHeight * 0.5; // Random height to simulate signal
-
-                // Color the bar based on interference
-                if (interferenceFrequencies.includes(i + 1)) {
-                    ctx.fillStyle = "#FF6347"; // Red for interference
-                } else {
-                    ctx.fillStyle = "#32CD32"; // Green for safe
-                }
-
-                // Highlight the current frequency
-                if (i + 1 === parseInt(currentFrequency)) {
-                    ctx.fillStyle = "#FFD700";  // Yellow for the selected frequency
-                    barHeight = spectrumHeight * 0.9;  // Make it taller for emphasis
-                }
-
-                // Draw the bar
-                ctx.fillRect(i * barWidth, spectrumHeight - barHeight, barWidth, barHeight);
+            if (!encrypted) {
+                encrypted = true;
+                document.getElementById("encryptionStatus").textContent = "Communication encrypted successfully!";
+                document.getElementById("objectiveStatus").textContent = "Current Objective: Continue monitoring for further interference.";
+            } else {
+                document.getElementById("encryptionStatus").textContent = "Communication is already encrypted.";
             }
         }
 
-        // Initial setup
-        drawFrequencySpectrum();
-        checkInterference();
+        updateFrequency();
     </script>
+
 </body>
 </html>
