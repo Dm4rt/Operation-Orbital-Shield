@@ -85,6 +85,32 @@
             background-color: #0056b3;
         }
 
+        /* Yellow Text Styling */
+        .yellow-text {
+            color: #FFD700;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 1.2em;
+        }
+
+        .yellow-text a {
+            color: #FFD700; /* Ensure the link color is yellow */
+            text-decoration: underline;
+        }
+
+        .yellow-text a:visited {
+            color: #FFD700; /* Prevent the link from changing color after being visited */
+        }
+
+        .yellow-text a:hover {
+            color: #FFD700; /* Ensure it stays yellow when hovered */
+        }
+
+        .yellow-text a:active {
+            color: #FFD700; /* Ensure it stays yellow when active */
+        }
+
         /* Image Styling */
         .image-container {
             text-align: center;
@@ -127,6 +153,11 @@
         <!-- Image of R3dSh1ft Hacker Group -->
         <div class="image-container">
             <img src="resources/images/R3dSh1ft.jpg" alt="R3dSh1ft Hacker Group">
+        </div>
+
+        <div class="yellow-text">
+            Discover more about the adversary group here: 
+            <a href="R3dSh1ft.html" target="_blank">R3dSh1ft Adversary Domain</a>
         </div>
 
         <button class="open-terminal" onclick="openNextMission()">Proceed to Basic Commands</button>
