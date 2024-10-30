@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mission Briefing - Detect & Disable Malware</title>
+    <title>Mission Briefing - Detect & Report Malware</title>
     
     <!-- Load Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap" rel="stylesheet">
@@ -70,6 +70,19 @@
             border-radius: 8px;
         }
 
+        .input-container {
+            margin-top: 20px;
+        }
+
+        .input-box {
+            padding: 10px;
+            width: 80%;
+            font-size: 1.2em;
+            border-radius: 5px;
+            border: 1px solid #333;
+            margin-bottom: 15px;
+        }
+
         .open-terminal {
             background-color: #007bff;
             color: white;
@@ -84,20 +97,26 @@
         .open-terminal:hover {
             background-color: #0056b3;
         }
+
+        .error {
+            color: red;
+            font-weight: bold;
+            margin-top: 15px;
+        }
     </style>
 </head>
 <body>
-    <h1>Mission Briefing - Detect & Disable Malware</h1>
+    <h1>Mission Briefing - Detect & Report Malware</h1>
 
     <div class="mission-briefing">
-        <p>R3dSh1ft has deployed a malicious script designed to retain access to this server. Your mission is to locate this backdoor, analyze its behavior, and disable it before further damage can occur.</p>
+        <p>R3dSh1ft has deployed multiple malicious scripts designed to maintain unauthorized access to the system. Your mission is to locate and identify all backdoor scripts, but do not remove them just yet. Report the names of these malware scripts for further analysis.</p>
         
         <div class="objectives">
             <h2>Mission Objectives:</h2>
             <ul class="objective-list">
                 <li>1. Use the <strong>find</strong> command to search for hidden malicious scripts on the server.</li>
-                <li>2. Analyze the contents of the script to determine its purpose.</li>
-                <li>3. Disable or remove the script to prevent it from executing.</li>
+                <li>2. Identify the three backdoor scripts created by R3dSh1ft.</li>
+                <li>3. Report the names of the scripts to proceed.</li>
             </ul>
         </div>
 
@@ -107,30 +126,46 @@
             <code>find / -name ".r3dsh1ft*.sh" 2>/dev/null</code>
             <p>This command will search the file system for any shell scripts related to R3dSh1ft.</p>
 
-            <p><strong>Step 2:</strong> Analyze the contents of any discovered scripts:</p>
-            <code>cat .r3dsh1ft_backdoor.sh</code>
-
-            <p><strong>Step 3:</strong> Disable or remove the script:</p>
-            <code>rm .r3dsh1ft_backdoor.sh</code>
-            <p>This will delete the backdoor script from the system.</p>
-
-            <p><strong>Step 4:</strong> Confirm no other malicious scripts remain using <strong>find</strong>.</p>
+            <p><strong>Step 2:</strong> Once you locate the scripts, report their names in the form below to proceed:</p>
         </div>
 
-        <button class="open-terminal" onclick="openNextLevel()">Proceed to Final Mission</button>
-        <button class="open-terminal" onclick="openTerminal()">Open Terminal</button>
+        <div class="input-container">
+            <input type="text" id="script1" class="input-box" placeholder="Enter the first script name">
+            <input type="text" id="script2" class="input-box" placeholder="Enter the second script name">
+            <input type="text" id="script3" class="input-box" placeholder="Enter the third script name">
+        </div>
+
+        <div id="error-message" class="error"></div>
+
+        <button class="open-terminal" onclick="goBack()">Go Back</button>
+        <button class="open-terminal" onclick="checkScripts()">Proceed to Next Mission</button>
     </div>
 
     <script>
-        function openTerminal() {
-            // Open the terminal in a new window
-            window.open('cyberlevelterminal.html', '_blank');
+        function goBack() {
+            // Go back to the previous level
+            window.location.href = 'cyberleveltwo.html';
         }
-        function openNextLevel() {
-            // Open the next level in the same window
-            window.location.href = 'cyberlevelfour.html';
+
+        function checkScripts() {
+            // Get the input values
+            const script1 = document.getElementById('script1').value.trim();
+            const script2 = document.getElementById('script2').value.trim();
+            const script3 = document.getElementById('script3').value.trim();
+
+            // Correct script names
+            const correctScripts = [".r3dsh1ft_backdoor.sh", ".numquamInfra.sh", ".gravWell.sh"];
+
+            // Create an array of entered scripts
+            let enteredScripts = [script1, script2, script3];
+
+            // Sort both arrays and compare them as strings
+            if (enteredScripts.sort().toString() === correctScripts.sort().toString()) {
+                window.location.href = 'cyberlevelfour.html';  // Proceed to next level
+            } else {
+                document.getElementById('error-message').innerText = "Incorrect script names. Please try again.";
+            }
         }
     </script>
-
 </body>
 </html>
