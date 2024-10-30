@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Mission Briefing - Parts Investigation</title>
+    
+    <!-- Load Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            background-image: url('resources/images/pageBackground.jpg');
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            min-height: 100vh;
+            font-family: 'Roboto', sans-serif;
+            color: white;
+        }
+
+        h1 {
+            font-size: 3em;
+            color: white;
+            text-align: center;
+            text-shadow: 
+                -1px -1px 0 #000,  
+                1px -1px 0 #000,  
+                -1px 1px 0 #000,  
+                1px 1px 0 #000;
+            margin-top: 20px;
+        }
+
+        .mission-briefing {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px auto;
+            max-width: 900px;
+            text-align: center;
+        }
+
+        p {
+            font-size: 1.2em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        .objectives {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 8px;
+            text-align: left;
+        }
+
+        .objective-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .objective-list li {
+            margin: 10px 0;
+            font-size: 1.1em;
+        }
+
+        .instruction {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 8px;
+        }
+
+        .open-terminal {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .open-terminal:hover {
+            background-color: #0056b3;
+        }
+
+        .input-field {
+            margin: 15px 0;
+        }
+
+        .input-field input {
+            width: 70%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #333;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <h1>Mission Briefing - Parts Investigation</h1>
+
+    <div class="mission-briefing">
+        <p>The adversary, R3dSh1ft, has successfully compromised several critical parts of the satellite payload. Your mission is to identify the corrupted parts and ensure that SpaceOps and the Engineering team are informed before launch.</p>
+        
+        <div class="objectives">
+            <h2>Mission Objectives:</h2>
+            <ul class="objective-list">
+                <li>1. Investigate the compromised parts that could jeopardize the mission.</li>
+                <li>2. Provide the names of the five parts that have been hacked.</li>
+                <li>3. Report these to prevent the launch from being compromised.</li>
+            </ul>
+        </div>
+
+        <div class="instruction">
+            <h3>Step-by-Step Instructions:</h3>
+            <p>Search through the **R3dSh1ftPartsDivision** directories and identify the corrupted parts based on clues provided in mission logs. The parts are critical for launch and satellite operation.</p>
+
+            <p><strong>Clue 1:</strong> The part responsible for long-distance communication has been compromised, disrupting relay signals from the satellite.</p>
+            <p><strong>Clue 2:</strong> A critical engine part needed for launching and maneuvering the satellite in orbit has been tampered with.</p>
+            <p><strong>Clue 3:</strong> One of the rechargeable battery banks designed to power the satellite has shown signs of malware interference.</p>
+            <p><strong>Clue 4:</strong> A docking port used for satellite assembly in orbit is showing signs of R3dSh1ft infiltration.</p>
+            <p><strong>Clue 5:</strong> An antenna relay system used for establishing satellite-to-satellite communications has been altered, affecting orbital data relay.</p>
+            
+            <div class="input-field">
+                <p><strong>Enter the names of the five compromised parts:</strong></p>
+                <input type="text" id="part1" placeholder="Part 1">
+                <input type="text" id="part2" placeholder="Part 2">
+                <input type="text" id="part3" placeholder="Part 3">
+                <input type="text" id="part4" placeholder="Part 4">
+                <input type="text" id="part5" placeholder="Part 5">
+            </div>
+        </div>
+
+        <button class="open-terminal" onclick="goBack()">Go Back</button>
+        <button class="open-terminal" onclick="validateParts()">Check Parts</button>
+    </div>
+
+    <script>
+        function goBack() {
+            window.location.href = 'cyberlevelfour.html'; // Redirects back to the previous level
+        }
+
+        function validateParts() {
+            const part1 = document.getElementById('part1').value.toLowerCase();
+            const part2 = document.getElementById('part2').value.toLowerCase();
+            const part3 = document.getElementById('part3').value.toLowerCase();
+            const part4 = document.getElementById('part4').value.toLowerCase();
+            const part5 = document.getElementById('part5').value.toLowerCase();
+
+            const correctParts = [
+                'communotron 88-88',
+                'lv-t45 swivel',
+                'z-4k rechargeable battery bank',
+                'clamp-o-tron docking port',
+                'ra-15 relay antenna'
+            ];
+
+            if ([part1, part2, part3, part4, part5].every(part => correctParts.includes(part))) {
+                alert('All parts identified correctly! Mission success.');
+            } else {
+                alert('Some parts are incorrect. Please check the clues again.');
+            }
+        }
+    </script>
+
+</body>
+</html>
+

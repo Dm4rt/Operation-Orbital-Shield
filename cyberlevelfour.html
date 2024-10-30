@@ -90,29 +90,36 @@
     <h1>Mission Briefing - Password Cracking</h1>
 
     <div class="mission-briefing">
-        <p>You have discovered that the adversary, R3dSh1ft, uses weak credentials to secure some of their systems. Your mission is to crack these passwords and report back with the discovered credentials.</p>
+        <p>The adversary, R3dSh1ft, is using weak credentials to protect key systems. Your mission is to collect possible passwords from various sources, build a custom password list, and use it to brute-force an SSH login.</p>
         
         <div class="objectives">
             <h2>Mission Objectives:</h2>
             <ul class="objective-list">
-                <li>1. Use a password cracking tool to brute-force SSH access to a weakly protected system.</li>
-                <li>2. Capture the credentials used by R3dSh1ft.</li>
-                <li>3. Report the cracked password to proceed to the next level.</li>
+                <li>1. Search through system files to gather potential passwords.</li>
+                <li>2. Create a password list file with your findings.</li>
+                <li>3. Use the Hydra tool to brute-force SSH access using your password list.</li>
+                <li>4. Capture the correct password and proceed to the next mission.</li>
             </ul>
         </div>
 
         <div class="instruction">
             <h3>Step-by-Step Instructions:</h3>
-            <p><strong>Step 1:</strong> Use the <strong>Hydra</strong> tool to perform a brute-force attack on the SSH login:</p>
+            <p><strong>Step 1:</strong> Gather potential passwords from system files (e.g., `readme.txt`, `config.conf`, `users.txt`):</p>
+            <code>cat readme.txt</code> 
+            <code>cat users.txt</code>
+            <p>Search the system for other relevant files with <code>find</code> or <code>grep</code> commands.</p>
+
+            <p><strong>Step 2:</strong> Create a password list file based on your findings: <br> (Hint: You have writing permissions in the tools folder)</p>
+            <code>nano passwordlistfile.txt</code>
+
+            <p><strong>Step 3:</strong> Use Hydra to brute-force the SSH login:</p>
             <code>hydra -l username -P passwordlistfile.txt [IP Address] -s 22 ssh</code>
-            <p>This command attempts to guess the password for the SSH user <strong>R3dSh1ft</strong> using a list of potential passwords.</p>
+            <p>This command will attempt to log in to the SSH user using your custom password list.</p>
 
-            <p><strong>Step 2:</strong> Once you crack the password, make note of it for reporting.</p>
-
-            <p><strong>Step 3:</strong> Input the cracked password below to proceed:</p>
+            <p><strong>Step 4:</strong> Once you successfully crack the password, input it below:</p>
             <input type="text" id="cracked-password" placeholder="Enter cracked password">
             
-            <p><strong>Step 4:</strong> After entering the correct password, proceed to the next mission.</p>
+            <p><strong>Step 5:</strong> After entering the correct password, proceed to the next mission.</p>
         </div>
 
         <button class="open-terminal" onclick="goBack()">Go Back</button>
@@ -126,7 +133,7 @@
 
         function validatePassword() {
             const enteredPassword = document.getElementById('cracked-password').value;
-            const correctPassword = 'spaceforce'; // Placeholder for the actual password they need to crack
+            const correctPassword = 'Shenlong'; // Placeholder for the actual password they need to crack
             
             if (enteredPassword === correctPassword) {
                 window.location.href = 'cyberlevelfive.html'; // Proceed to next mission if the password is correct
